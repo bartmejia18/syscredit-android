@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">syscredit</string>
+    <string name="app_name">CrediHelp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">search</string>
+    <string name="content_description_search">search client</string>
 </resources>

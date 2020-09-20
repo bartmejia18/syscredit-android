@@ -2,10 +2,10 @@ package com.example.syscredit.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.Adapter
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -24,8 +24,10 @@ import kotlinx.android.synthetic.main.fragment_main.*
 class MainFragment : Fragment(), MainAdapter.ItemClickListener {
 
     private val viewModel by viewModels<MainViewModel>() { VMFactory(RepoImpl(DataSource())) }
+    lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
     }
 
@@ -38,6 +40,7 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setupRecyclerView()
         viewModel.fetchCustomerList.observe(viewLifecycleOwner, Observer { result ->
             when (result) {
@@ -46,7 +49,8 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
                 }
                 is Resource.Success -> {
                     progress_bar.visibility = View.GONE
-                    recycler_view.adapter = MainAdapter(requireContext(), result.data.result.registros, this)
+                    adapter = MainAdapter(requireContext(), result.data.result.registros, this)
+                    recycler_view.adapter = adapter
                 }
                 is Resource.Failure -> {
                     progress_bar.visibility = View.GONE
@@ -59,7 +63,6 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
                 }
             }
         })
-
     }
 
     private fun setupRecyclerView() {
@@ -76,6 +79,24 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
         val bundle = Bundle()
         bundle.putParcelable("credito", credito)
         findNavController().navigate(R.id.detailCustomer, bundle)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.top_app_bar, menu)
+        val search = menu.findItem(R.id.search)
+        val searchView = search.actionView as SearchView
+        searchView.queryHint = "Search"
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return true
+            }
+        })
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }
