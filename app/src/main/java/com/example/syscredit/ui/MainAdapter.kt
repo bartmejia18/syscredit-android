@@ -49,7 +49,6 @@ class MainAdapter(
         override fun bind(item: Credito, position: Int) {
             itemView.txt_name.text = item.nombreCompleto
             itemView.txt_address.text = item.cliente.direccion
-            itemView.txt_number_phone.text = item.cliente.telefono
             itemView.setOnClickListener {
                 itemClickListener.click(item)
             }

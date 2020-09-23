@@ -1,14 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.DetailCustomer">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        cardView:cardCornerRadius="8dp"
+        cardView:cardElevation="8dp"
+        cardView:layout_constraintBottom_toTopOf="@id/card_view2"
+        cardView:layout_constraintEnd_toEndOf="parent"
+        cardView:layout_constraintStart_toStartOf="parent"
+        cardView:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="16dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dirección" />
+
+            <TextView
+                android:id="@+id/txt_direccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1era. Calle Zona 1, Retalhuleu, Retalhuleu"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DPI" />
+
+            <TextView
+                android:id="@+id/txt_dpi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="1234567890123"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Teléfono" />
+
+            <TextView
+                android:id="@+id/txt_telefono"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:text="12345678"
+                android:textAllCaps="true"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        cardView:cardCornerRadius="8dp"
+        cardView:cardElevation="8dp"
+        cardView:layout_constraintBottom_toBottomOf="parent"
+        cardView:layout_constraintEnd_toEndOf="parent"
+        cardView:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                cardView:layout_constraintBottom_toTopOf="@id/layout_2"
+                cardView:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Deuda total"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total"
+                    cardView:layout_constraintStart_toStartOf="@id/txt_deuda_total"
+                    cardView:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_deuda_total"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="Q. 1500.00"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintBottom_toBottomOf="parent"
+                    cardView:layout_constraintEnd_toEndOf="@+id/txt_saldo"
+                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toStartOf="parent"
+                    cardView:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Saldo"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total"
+                    cardView:layout_constraintStart_toStartOf="@+id/txt_saldo"
+                    cardView:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/txt_saldo"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="Q. 1000.00"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintBottom_toBottomOf="parent"
+                    cardView:layout_constraintEnd_toEndOf="parent"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toEndOf="@+id/txt_deuda_total"
+                    cardView:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txt_cuotas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CUOTAS"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                cardView:layout_constraintTop_toTopOf="@id/layout_1"
+                cardView:layout_constraintBottom_toBottomOf="@id/layout_2"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                cardView:layout_constraintTop_toBottomOf="@id/txt_cuotas"
+                cardView:layout_constraintBottom_toBottomOf="parent"
+                tools:layout_editor_absoluteX="8dp">
+
+
+                <TextView
+                    android:id="@+id/title_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pagadas"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintStart_toStartOf="@id/txt_deuda_total2"
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total2" />
+
+                <TextView
+                    android:id="@+id/txt_deuda_total2"
+                    android:layout_width="94dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="100"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo2"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toStartOf="parent"
+                    cardView:layout_constraintTop_toBottomOf="@id/title_1"
+                    tools:layout_editor_absoluteY="10dp" />
+
+                <TextView
+                    android:id="@+id/title_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Restantes"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintStart_toStartOf="@id/txt_saldo2"
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    cardView:layout_constraintBottom_toTopOf="@id/txt_saldo2" />
+
+                <TextView
+                    android:id="@+id/txt_saldo2"
+                    android:layout_width="94dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="100"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintBottom_toBottomOf="@+id/txt_deuda_total2"
+                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo3"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toEndOf="@+id/txt_deuda_total2"
+                    cardView:layout_constraintTop_toTopOf="@+id/txt_deuda_total2" />
+
+
+                <TextView
+                    android:id="@+id/title_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Diaria"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintStart_toStartOf="@id/txt_saldo3"
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    cardView:layout_constraintBottom_toTopOf="@id/txt_saldo3" />
+
+                <TextView
+                    android:id="@+id/txt_saldo3"
+                    android:layout_width="94dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    android:text="Q. 1000.00"
+                    android:layout_marginEnd="12dp"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintBottom_toBottomOf="@+id/txt_saldo2"
+                    cardView:layout_constraintEnd_toEndOf="parent"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toEndOf="@+id/txt_saldo2"
+                    cardView:layout_constraintTop_toTopOf="@+id/txt_saldo2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
