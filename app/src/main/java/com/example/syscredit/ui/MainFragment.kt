@@ -42,7 +42,7 @@ class MainFragment : Fragment(), MainAdapter.ItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        viewModel.fetchCustomerList.observe(viewLifecycleOwner, Observer { result ->
+        viewModel.fetchCustomerList.observe(viewLifecycleOwner, { result ->
             when (result) {
                 is Resource.Loading -> {
                     progress_bar.visibility = View.VISIBLE

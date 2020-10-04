@@ -7,14 +7,14 @@
     tools:context=".ui.DetailCustomer">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view"
+        android:id="@+id/customer_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="8dp"
         cardView:cardCornerRadius="8dp"
         cardView:cardElevation="8dp"
-        cardView:layout_constraintBottom_toTopOf="@id/card_view2"
+        cardView:layout_constraintBottom_toTopOf="@id/credit_card_view"
         cardView:layout_constraintEnd_toEndOf="parent"
         cardView:layout_constraintStart_toStartOf="parent"
         cardView:layout_constraintTop_toTopOf="parent">
@@ -23,25 +23,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingTop="14dp"
-            android:paddingBottom="14dp"
             android:paddingStart="18dp"
+            android:paddingTop="14dp"
             android:paddingEnd="16dp"
-            >
+            android:paddingBottom="14dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dirección" />
+                android:text="@string/label_address" />
 
             <TextView
-                android:id="@+id/txt_direccion"
+                android:id="@+id/address_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1era. Calle Zona 1, Retalhuleu, Retalhuleu"
                 android:textAllCaps="true"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="1era. Calle Zona 1, Retalhuleu, Retalhuleu" />
 
             <View
                 android:layout_width="match_parent"
@@ -53,17 +52,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DPI" />
+                android:text="@string/label_dpi" />
 
             <TextView
-                android:id="@+id/txt_dpi"
+                android:id="@+id/dpi_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="1234567890123"
                 android:textAllCaps="true"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="1234567890123" />
 
             <View
                 android:layout_width="match_parent"
@@ -75,24 +74,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teléfono" />
+                android:text="@string/label_phone" />
 
             <TextView
-                android:id="@+id/txt_telefono"
+                android:id="@+id/phone_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
-                android:text="12345678"
                 android:textAllCaps="true"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:text="12345678" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_view2"
+        android:id="@+id/credit_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -109,166 +108,278 @@
             android:padding="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_1"
+                android:id="@+id/balances_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                cardView:layout_constraintBottom_toTopOf="@id/layout_2"
+                cardView:layout_constraintBottom_toTopOf="@id/fees_layout"
                 cardView:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="16dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deuda total"
+                    android:text="@string/label_total_debt"
                     android:textAllCaps="true"
-                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total"
-                    cardView:layout_constraintStart_toStartOf="@id/txt_deuda_total"
+                    cardView:layout_constraintBottom_toTopOf="@id/total_debt_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/total_debt_text_view"
+                    cardView:layout_constraintStart_toStartOf="@id/total_debt_text_view"
                     cardView:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_deuda_total"
+                    android:id="@+id/total_debt_text_view"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rectangle"
                     android:gravity="center"
-                    android:text="Q. 1500.00"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     cardView:layout_constraintBottom_toBottomOf="parent"
-                    cardView:layout_constraintEnd_toEndOf="@+id/txt_saldo"
-                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo"
+                    cardView:layout_constraintEnd_toEndOf="@+id/balance_text_view"
+                    cardView:layout_constraintEnd_toStartOf="@+id/balance_text_view"
                     cardView:layout_constraintHorizontal_bias="0.5"
                     cardView:layout_constraintStart_toStartOf="parent"
-                    cardView:layout_constraintTop_toTopOf="parent" />
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    tools:text="Q. 1500.00" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Saldo"
+                    android:text="@string/label_balance"
                     android:textAllCaps="true"
-                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total"
-                    cardView:layout_constraintStart_toStartOf="@+id/txt_saldo"
+                    cardView:layout_constraintBottom_toTopOf="@id/total_debt_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/balance_text_view"
+                    cardView:layout_constraintStart_toStartOf="@+id/balance_text_view"
                     cardView:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_saldo"
+                    android:id="@+id/balance_text_view"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rectangle"
                     android:gravity="center"
-                    android:text="Q. 1000.00"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     cardView:layout_constraintBottom_toBottomOf="parent"
                     cardView:layout_constraintEnd_toEndOf="parent"
                     cardView:layout_constraintHorizontal_bias="0.5"
-                    cardView:layout_constraintStart_toEndOf="@+id/txt_deuda_total"
-                    cardView:layout_constraintTop_toTopOf="parent" />
+                    cardView:layout_constraintStart_toEndOf="@+id/total_debt_text_view"
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    tools:text="Q. 1000.00" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/txt_cuotas"
+                android:id="@+id/title_fee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="CUOTAS"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="12dp"
-                cardView:layout_constraintTop_toTopOf="@id/layout_1"
-                cardView:layout_constraintBottom_toBottomOf="@id/layout_2"/>
+                android:text="@string/title_fee"
+
+                android:textAlignment="center"
+                cardView:layout_constraintBottom_toBottomOf="@id/fees_layout"
+                cardView:layout_constraintEnd_toEndOf="parent"
+                cardView:layout_constraintStart_toStartOf="parent"
+                cardView:layout_constraintTop_toTopOf="@id/balances_layout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_2"
+                android:id="@+id/fees_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                cardView:layout_constraintTop_toBottomOf="@id/txt_cuotas"
-                cardView:layout_constraintBottom_toBottomOf="parent"
+                cardView:layout_constraintBottom_toTopOf="@id/dates_layout"
+                cardView:layout_constraintTop_toBottomOf="@id/title_fee"
                 tools:layout_editor_absoluteX="8dp">
 
 
                 <TextView
-                    android:id="@+id/title_1"
+                    android:id="@+id/title_fee_paid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pagadas"
+                    android:text="@string/label_fee_paid"
                     android:textAllCaps="true"
-                    cardView:layout_constraintStart_toStartOf="@id/txt_deuda_total2"
-                    cardView:layout_constraintTop_toTopOf="parent"
-                    cardView:layout_constraintBottom_toTopOf="@id/txt_deuda_total2" />
+                    cardView:layout_constraintBottom_toTopOf="@id/feed_paid_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/feed_paid_text_view"
+                    cardView:layout_constraintStart_toStartOf="@id/feed_paid_text_view"
+                    cardView:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_deuda_total2"
+                    android:id="@+id/feed_paid_text_view"
                     android:layout_width="94dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="14dp"
                     android:background="@drawable/rectangle"
                     android:gravity="center"
-                    android:text="100"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo2"
+                    cardView:layout_constraintEnd_toStartOf="@+id/remaining_text_view"
                     cardView:layout_constraintHorizontal_bias="0.5"
                     cardView:layout_constraintStart_toStartOf="parent"
-                    cardView:layout_constraintTop_toBottomOf="@id/title_1"
-                    tools:layout_editor_absoluteY="10dp" />
+                    cardView:layout_constraintTop_toBottomOf="@id/title_fee_paid"
+                    tools:layout_editor_absoluteY="10dp"
+                    tools:text="100" />
 
                 <TextView
-                    android:id="@+id/title_2"
+                    android:id="@+id/title_remaining"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Restantes"
+                    android:text="@string/label_remaining"
                     android:textAllCaps="true"
-                    cardView:layout_constraintStart_toStartOf="@id/txt_saldo2"
-                    cardView:layout_constraintTop_toTopOf="parent"
-                    cardView:layout_constraintBottom_toTopOf="@id/txt_saldo2" />
+                    cardView:layout_constraintBottom_toTopOf="@id/remaining_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/remaining_text_view"
+                    cardView:layout_constraintStart_toStartOf="@id/remaining_text_view"
+                    cardView:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_saldo2"
+                    android:id="@+id/remaining_text_view"
                     android:layout_width="94dp"
                     android:layout_height="50dp"
                     android:background="@drawable/rectangle"
                     android:gravity="center"
-                    android:text="100"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    cardView:layout_constraintBottom_toBottomOf="@+id/txt_deuda_total2"
-                    cardView:layout_constraintEnd_toStartOf="@+id/txt_saldo3"
+                    cardView:layout_constraintBottom_toBottomOf="@+id/feed_paid_text_view"
+                    cardView:layout_constraintEnd_toStartOf="@+id/daily_fee_text_view"
                     cardView:layout_constraintHorizontal_bias="0.5"
-                    cardView:layout_constraintStart_toEndOf="@+id/txt_deuda_total2"
-                    cardView:layout_constraintTop_toTopOf="@+id/txt_deuda_total2" />
-
+                    cardView:layout_constraintStart_toEndOf="@+id/feed_paid_text_view"
+                    cardView:layout_constraintTop_toTopOf="@+id/feed_paid_text_view"
+                    tools:text="100" />
 
                 <TextView
-                    android:id="@+id/title_3"
+                    android:id="@+id/title_daily_fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Diaria"
+                    android:text="@string/label_daily_fee"
                     android:textAllCaps="true"
-                    cardView:layout_constraintStart_toStartOf="@id/txt_saldo3"
-                    cardView:layout_constraintTop_toTopOf="parent"
-                    cardView:layout_constraintBottom_toTopOf="@id/txt_saldo3" />
+                    cardView:layout_constraintBottom_toTopOf="@id/daily_fee_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/daily_fee_text_view"
+                    cardView:layout_constraintStart_toStartOf="@id/daily_fee_text_view"
+                    cardView:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/txt_saldo3"
+                    android:id="@+id/daily_fee_text_view"
                     android:layout_width="94dp"
                     android:layout_height="50dp"
+                    android:layout_marginEnd="14dp"
                     android:background="@drawable/rectangle"
                     android:gravity="center"
-                    android:text="Q. 1000.00"
-                    android:layout_marginEnd="12dp"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    cardView:layout_constraintBottom_toBottomOf="@+id/txt_saldo2"
+                    cardView:layout_constraintBottom_toBottomOf="@+id/remaining_text_view"
                     cardView:layout_constraintEnd_toEndOf="parent"
                     cardView:layout_constraintHorizontal_bias="0.5"
-                    cardView:layout_constraintStart_toEndOf="@+id/txt_saldo2"
-                    cardView:layout_constraintTop_toTopOf="@+id/txt_saldo2" />
+                    cardView:layout_constraintStart_toEndOf="@+id/remaining_text_view"
+                    cardView:layout_constraintTop_toTopOf="@+id/remaining_text_view"
+                    tools:text="Q. 1000.00" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dates_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="14dp"
+                cardView:layout_constraintBottom_toBottomOf="parent"
+                cardView:layout_constraintTop_toBottomOf="@id/fees_layout"
+                tools:layout_editor_absoluteX="16dp">
+
+                <TextView
+                    android:id="@+id/title_start_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_start_date"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintTop_toTopOf="parent"
+                    cardView:layout_constraintStart_toStartOf="@id/start_date_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/start_date_text_view"
+                    />
+
+                <TextView
+                    android:id="@+id/start_date_text_view"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    tools:text="Q. 1500.00"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintEnd_toEndOf="@+id/end_date_text_view"
+                    cardView:layout_constraintEnd_toStartOf="@+id/end_date_text_view"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toStartOf="parent"
+                    cardView:layout_constraintTop_toBottomOf="@id/title_start_date"
+                    />
+
+                <TextView
+                    android:id="@+id/title_end_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/end_date"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintStart_toStartOf="@+id/end_date_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@+id/end_date_text_view"
+                    cardView:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/end_date_text_view"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    tools:text="Q. 1000.00"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintEnd_toEndOf="parent"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    cardView:layout_constraintStart_toEndOf="@+id/start_date_text_view"
+                    cardView:layout_constraintTop_toBottomOf="@id/title_end_date" />
+
+                <TextView
+                    android:id="@+id/title_amount_paid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="@string/label_amount_paid"
+                    android:textAllCaps="true"
+                    cardView:layout_constraintStart_toStartOf="@id/amount_paid_text_view"
+                    cardView:layout_constraintEnd_toEndOf="@id/amount_paid_text_view"
+                    cardView:layout_constraintTop_toBottomOf="@id/start_date_text_view" />
+
+                <TextView
+                    android:id="@+id/amount_paid_text_view"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center"
+                    tools:text="Q. 1500.00"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    cardView:layout_constraintTop_toBottomOf="@+id/title_amount_paid"
+                    cardView:layout_constraintEnd_toEndOf="@+id/start_date_text_view"
+                    cardView:layout_constraintStart_toStartOf="@+id/start_date_text_view"
+                    cardView:layout_constraintHorizontal_bias="0.5"
+                    />
+
+                <Button
+                    android:id="@+id/containedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contained button"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    cardView:layout_constraintTop_toBottomOf="@id/amount_paid_text_view"
+                    cardView:layout_constraintBottom_toBottomOf="parent"
+                    cardView:layout_constraintStart_toStartOf="parent"
+                    cardView:layout_constraintEnd_toEndOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

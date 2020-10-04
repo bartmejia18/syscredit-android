@@ -35,15 +35,15 @@ data class Credito(
     @SerializedName("sucursal_id")
     val sucursalId: Int = 0,
     @SerializedName("saldo")
-    val saldo: Float = 0F,
+    val saldo: String? = null,
     @SerializedName("interes")
     val interes: Float = 0F,
     @SerializedName("deudatotal")
-    val deudaTotal: Float = 0F,
+    val deudaTotal: String? = null,
     @SerializedName("cuota_diaria")
-    val cuotaDiaria: Float = 0F,
+    val cuotaDiaria: String? = null,
     @SerializedName("cuota_minima")
-    val cuotaMinima: Float = 0F,
+    val cuotaMinima: String? = null,
     @SerializedName("fecha_inicio")
     val fechaInicio: String = "",
     @SerializedName("fecha_fin")
@@ -52,10 +52,10 @@ data class Credito(
     val estado: Int = 0,
     @SerializedName("cantidad_cuotas_pagadas")
     val cantidadCuotasPagadas: Long = 0,
+    @SerializedName("cuotas_pendientes")
+    val cuotasPendientes: Long = 0,
     @SerializedName("monto_abonado")
     val montoAbonado: Long = 0,
-    @SerializedName("fecha_limite")
-    val fechaLimite: String = "",
     @SerializedName("pago_hoy")
     val pagoHoy: Boolean = false,
     @SerializedName("nombre_completo")
@@ -67,9 +67,9 @@ data class Credito(
 @Parcelize
 data class Records(
     @SerializedName("total_cobrar")
-    val totalCobrar: Float = 0F,
+    val totalCobrar: String? = null,
     @SerializedName("total_minimo")
-    val totalMinimo: Float = 0F,
+    val totalMinimo: String? = null,
     @SerializedName("registros")
     val registros: List<Credito> = listOf()
 ) : Parcelable
