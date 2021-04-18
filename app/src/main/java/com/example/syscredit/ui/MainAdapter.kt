@@ -9,11 +9,8 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.syscredit.R
 import com.example.syscredit.base.BaseViewHolder
-import com.example.syscredit.data.model.Credito
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.item_customer.view.*
+import com.example.syscredit.domain.model.Credito
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MainAdapter(
     private val context: Context,
@@ -47,11 +44,17 @@ class MainAdapter(
 
     inner class MainViewHolder(itemView: View) : BaseViewHolder<Credito>(itemView) {
         override fun bind(item: Credito, position: Int) {
-            itemView.txt_name.text = item.nombreCompleto
+            /*itemView.txt_name.text = item.nombreCompleto
             itemView.txt_address.text = item.cliente.direccion
             itemView.setOnClickListener {
                 itemClickListener.click(item)
             }
+
+            if (item.pagoHoy) {
+                itemView.pay_today_image_view.visibility = View.VISIBLE
+            } else {
+                itemView.pay_today_image_view.visibility = View.GONE
+            }*/
         }
     }
 

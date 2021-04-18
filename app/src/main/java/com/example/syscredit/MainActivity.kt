@@ -2,31 +2,42 @@ package com.example.syscredit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_main.*
+import com.example.syscredit.core.extensions.hide
+import com.example.syscredit.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        navController = findNavController(R.id.nav_host_fragment)
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment), drawer_layout)
-        setSupportActionBar(toolbar)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        with (binding) {
+            navController = findNavController(R.id.nav_host_fragment)
+            navController.apply {
+                addOnDestinationChangedListener { _, destination, _ ->
+                    when (destination.id) {
+                        R.id.splash_fragment -> {
+                            appBarLayout.hide()
+                        }
+                    }
+                }
+            }
+            appBarConfiguration = AppBarConfiguration(setOf(R.id.main_fragment), drawerLayout)
+            setSupportActionBar(toolbar)
+            setupActionBarWithNavController(navController, appBarConfiguration)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

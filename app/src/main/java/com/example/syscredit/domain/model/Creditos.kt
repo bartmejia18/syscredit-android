@@ -1,10 +1,7 @@
-package com.example.syscredit.data.model
+package com.example.syscredit.domain.model
 
-import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class Cliente(
     @SerializedName("nombre")
     val nombre: String = "",
@@ -16,9 +13,8 @@ data class Cliente(
     val telefono: String = "",
     @SerializedName("dpi")
     val dpi: String = ""
-) : Parcelable
+)
 
-@Parcelize
 data class Credito(
     @SerializedName("id")
     val id: Int = 0,
@@ -62,9 +58,8 @@ data class Credito(
     val nombreCompleto: String = "",
     @SerializedName("cliente")
     val cliente: Cliente
-) : Parcelable
+)
 
-@Parcelize
 data class Records(
     @SerializedName("total_cobrar")
     val totalCobrar: String? = null,
@@ -72,10 +67,9 @@ data class Records(
     val totalMinimo: String? = null,
     @SerializedName("registros")
     val registros: List<Credito> = listOf()
-) : Parcelable
+)
 
-@Parcelize
 data class Result(
     @SerializedName("records")
     val result: Records
-): Parcelable
+)

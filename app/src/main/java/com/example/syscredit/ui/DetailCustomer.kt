@@ -6,8 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.syscredit.R
-import com.example.syscredit.data.model.Credito
-import kotlinx.android.synthetic.main.fragment_detail_customer.*
+import com.example.syscredit.domain.model.Credito
 
 class DetailCustomer : Fragment() {
     private lateinit var credit: Credito
@@ -28,7 +27,7 @@ class DetailCustomer : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        address_text_view.text = credit.cliente.direccion
+        /*address_text_view.text = credit.cliente.direccion
         phone_text_view.text = credit.cliente.telefono
         dpi_text_view.text = credit.cliente.dpi
         total_debt_text_view.text = "Q. ${credit.deudaTotal}"
@@ -38,6 +37,6 @@ class DetailCustomer : Fragment() {
         daily_fee_text_view.text = "Q ${credit.cuotaDiaria}"
         start_date_text_view.text = credit.fechaInicio
         end_date_text_view.text = credit.fechaFin
-        amount_paid_text_view.text = "Q . ${credit.montoAbonado}"
+        amount_paid_text_view.text = "Q . ${credit.montoAbonado}"*/
     }
 }
