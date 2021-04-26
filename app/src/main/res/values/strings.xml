@@ -16,4 +16,14 @@
     <string name="label_start_date">Fecha inicio</string>
     <string name="end_date">Fecha finalización</string>
     <string name="label_amount_paid">Monto abonado</string>
+
+    <string name="title_sign_in">INICIAR SESIÓN</string>
+    <string name="title_error_login">ERROR AL INICIAR SESIÓN</string>
+
+    <string name="label_user">Usuario</string>
+    <string name="label_password">Contraseña</string>
+    <string name="label_sign_in">Iniciar sesión</string>
+
+    <string name="action_accept">Aceptar</string>
+
 </resources>

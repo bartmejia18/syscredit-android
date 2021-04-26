@@ -9,7 +9,7 @@ import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.syscredit.R
 import com.example.syscredit.base.BaseViewHolder
-import com.example.syscredit.domain.model.Credito
+import com.example.syscredit.data.model.Credito
 import java.util.*
 
 class MainAdapter(

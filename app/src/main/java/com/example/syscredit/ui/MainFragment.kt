@@ -5,14 +5,13 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.SearchView
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.syscredit.R
-import com.example.syscredit.domain.model.Credito
+import com.example.syscredit.data.model.Credito
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment : Fragment(), MainAdapter.ItemClickListener {
+
 
     lateinit var adapter: MainAdapter
 

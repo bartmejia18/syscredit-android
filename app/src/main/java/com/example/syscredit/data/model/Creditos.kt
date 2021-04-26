@@ -1,4 +1,4 @@
-package com.example.syscredit.domain.model
+package com.example.syscredit.data.model
 
 import com.google.gson.annotations.SerializedName
 

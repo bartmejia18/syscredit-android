@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.syscredit.R
-import com.example.syscredit.domain.model.Credito
+import com.example.syscredit.data.model.Credito
 
 class DetailCustomer : Fragment() {
     private lateinit var credit: Credito
