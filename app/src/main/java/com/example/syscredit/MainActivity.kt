@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.syscredit.core.extensions.hide
+import com.example.syscredit.core.extensions.hideKeyboard
 import com.example.syscredit.core.extensions.show
 import com.example.syscredit.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
             navController = findNavController(R.id.nav_host_fragment)
             navController.apply {
                 addOnDestinationChangedListener { _, destination, _ ->
+                    hideKeyboard()
                     when (destination.id) {
                         R.id.splash_fragment, R.id.login_fragment -> {
                             appBarLayout.hide()

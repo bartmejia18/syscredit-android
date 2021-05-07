@@ -1,8 +1,8 @@
 package com.example.syscredit.data.api
 
-import com.example.syscredit.data.model.Credito
 import com.example.syscredit.data.model.Records
 import com.example.syscredit.data.model.response.ApiResponse
+import com.example.syscredit.data.services.CreditsServices
 import retrofit2.Response
 import javax.inject.Inject
 

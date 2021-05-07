@@ -1,75 +1,64 @@
 package com.example.syscredit.data.model
 
-import com.google.gson.annotations.SerializedName
+import android.os.Parcelable
+import com.squareup.moshi.Json
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Cliente(
-    @SerializedName("nombre")
+    @Json(name = "nombre")
     val nombre: String = "",
-    @SerializedName("apellido")
+    @Json(name = "apellido")
     val apellido: String = "",
-    @SerializedName("direccion")
+    @Json(name = "direccion")
     val direccion: String = "",
-    @SerializedName("telefono")
+    @Json(name = "telefono")
     val telefono: String = "",
-    @SerializedName("dpi")
+    @Json(name = "dpi")
     val dpi: String = ""
-)
+): Parcelable
 
+@Parcelize
 data class Credito(
-    @SerializedName("id")
+    @Json(name = "id")
     val id: Int = 0,
-    @SerializedName("clientes_id")
-    val clienteId: Int = 0,
-    @SerializedName("planes_id")
-    val planId: Int = 0,
-    @SerializedName("montos_prestamo_id")
-    val montoPrestamoId: Int = 0,
-    @SerializedName("usuarios_creo")
-    val usuarioCreadorId: Int = 0,
-    @SerializedName("usuarios_cobrador")
-    val usuarioCobradorId: Int = 0,
-    @SerializedName("sucursal_id")
-    val sucursalId: Int = 0,
-    @SerializedName("saldo")
+    @Json(name = "clientes_id")
+    val clientes_id: Int = 0,
+    @Json(name = "usuarios_cobrador")
+    val usuarios_cobrador: Int = 0,
+    @Json(name = "saldo")
     val saldo: String? = null,
-    @SerializedName("interes")
-    val interes: Float = 0F,
-    @SerializedName("deudatotal")
-    val deudaTotal: String? = null,
-    @SerializedName("cuota_diaria")
-    val cuotaDiaria: String? = null,
-    @SerializedName("cuota_minima")
-    val cuotaMinima: String? = null,
-    @SerializedName("fecha_inicio")
-    val fechaInicio: String = "",
-    @SerializedName("fecha_fin")
-    val fechaFin: String = "",
-    @SerializedName("estado")
+    @Json(name = "deudatotal")
+    val deudatotal: String? = null,
+    @Json(name = "cuota_diaria")
+    val cuota_diaria: String? = null,
+    @Json(name = "cuota_minima")
+    val cuota_minima: String? = null,
+    @Json(name = "fecha_inicio")
+    val fecha_inicio: String? = null,
+    @Json(name = "fecha_fin")
+    val fecha_fin: String? = null,
+    @Json(name = "estado")
     val estado: Int = 0,
-    @SerializedName("cantidad_cuotas_pagadas")
-    val cantidadCuotasPagadas: Long = 0,
-    @SerializedName("cuotas_pendientes")
-    val cuotasPendientes: Long = 0,
-    @SerializedName("monto_abonado")
-    val montoAbonado: Long = 0,
-    @SerializedName("pago_hoy")
-    val pagoHoy: Boolean = false,
-    @SerializedName("nombre_completo")
-    val nombreCompleto: String = "",
-    @SerializedName("cliente")
+    @Json(name = "cantidad_cuotas_pagadas")
+    val cantidad_cuotas_pagadas: Int? = null,
+    /*@Json(name = "cuotas_pendientes")
+    val cuotas_pendientes: Int? = null,
+    @Json(name = "monto_abonado")
+    val monto_abonado: Long? = null,*/
+    @Json(name = "pago_hoy")
+    val pago_hoy: Boolean = false,
+    @Json(name = "nombre_completo")
+    val nombre_completo: String = "",
+    @Json(name = "cliente")
     val cliente: Cliente
-)
+) : Parcelable
 
 data class Records(
-    @SerializedName("total_cobrar")
-    val totalCobrar: String? = null,
-    @SerializedName("total_minimo")
-    val totalMinimo: String? = null,
-    @SerializedName("registros")
+    @Json(name = "total_cobrar")
+    val total_cobrar: String? = null,
+    @Json(name = "total_minimo")
+    val total_minimo: String? = null,
+    @Json(name = "registros")
     val registros: List<Credito> = listOf()
-)
-
-data class Result(
-    @SerializedName("records")
-    val result: Records
 )

@@ -12,6 +12,7 @@ import com.example.syscredit.R
 import com.example.syscredit.core.extensions.DEFAULT_ANIMATION_DURATION_TIME
 import com.example.syscredit.core.extensions.fadeOut
 import com.example.syscredit.core.extensions.show
+import com.example.syscredit.data.local.sharedPreferences
 import com.example.syscredit.databinding.FragmentLoginBinding
 import com.example.syscredit.utils.Status
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,36 +28,56 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val binding = FragmentLoginBinding.bind(view)
 
-        with (binding) {
+        with(binding) {
             loginButton.setOnClickListener {
-                viewModel.doLogin(emailTextInputLayout.editText?.text.toString(), passwordTextInputLayout.editText?.text.toString())
+                viewModel.doLogin(
+                    emailTextInputLayout.editText?.text.toString(),
+                    passwordTextInputLayout.editText?.text.toString()
+                )
             }
 
-            with (viewModel) {
+            with(viewModel) {
                 user.observe(viewLifecycleOwner) {
-                    when (it.status){
+                    when (it.status) {
                         Status.LOADING -> {
                             loginButton.text = ""
                             progressBar.show()
                         }
-                        Status.SUCCESS -> progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator?) {
-                                super.onAnimationEnd(animation)
-                                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
-                            }
-                        })
-                        Status.ERROR -> progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator?) {
-                                super.onAnimationEnd(animation)
-                                MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
-                                    .setTitle(R.string.title_error_login)
-                                    .setMessage(it.message)
-                                    .setPositiveButton(R.string.action_accept) {
-                                            dialog, _ -> dialog.dismiss()
+                        Status.SUCCESS -> progressBar.fadeOut(
+                            DEFAULT_ANIMATION_DURATION_TIME,
+                            object : AnimatorListenerAdapter() {
+                                override fun onAnimationEnd(animation: Animator?) {
+                                    super.onAnimationEnd(animation)
+                                    if (it.data?.id != 0) {
+                                        loginButton.text = getString(R.string.label_sign_in)
+                                        activity?.sharedPreferences {
+                                            putBoolean("logged_in", true)
+                                            putString("name", it.data?.nombre)
+                                            putInt("id", it.data?.id?:0)
+                                        }
+                                        findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToMainFragment())
+                                    } else {
+                                        MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
+                                            .setTitle(R.string.title_error_login)
+                                            .setMessage(R.string.text_login_error)
+                                            .setPositiveButton(R.string.action_accept) { dialog, _ -> dialog.dismiss() }
+                                            .create().show()
                                     }
-                                    .create().show()
-                            }
-                        })
+                                }
+                            })
+                        Status.ERROR -> progressBar.fadeOut(
+                            DEFAULT_ANIMATION_DURATION_TIME,
+                            object : AnimatorListenerAdapter() {
+                                override fun onAnimationEnd(animation: Animator?) {
+                                    super.onAnimationEnd(animation)
+                                    loginButton.text = getString(R.string.label_sign_in)
+                                    MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
+                                        .setTitle(R.string.title_error_login)
+                                        .setMessage(it.message)
+                                        .setPositiveButton(R.string.action_accept) { dialog, _ -> dialog.dismiss() }
+                                        .create().show()
+                                }
+                            })
                     }
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.syscredit.data.api
+package com.example.syscredit.data.services
 
 import com.example.syscredit.data.model.User
 import com.example.syscredit.data.model.response.ApiResponse
@@ -8,11 +8,11 @@ import retrofit2.http.Query
 
 interface LoginServices {
     companion object {
-        private const val LOGIN = "login"
+        private const val LOGIN = "movil/login"
     }
     @POST(LOGIN)
     suspend fun loginAsync(
         @Query("user") user: String,
         @Query("password") password: String
-    ): Response<ApiResponse<User>>
+    ): Response<ApiResponse<User?>>
 }

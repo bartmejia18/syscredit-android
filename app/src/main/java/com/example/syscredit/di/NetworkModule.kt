@@ -2,6 +2,9 @@ package com.example.syscredit.di
 
 import com.example.syscredit.core.AppConstants.BASE_URL
 import com.example.syscredit.data.api.*
+import com.example.syscredit.data.services.CreditsServices
+import com.example.syscredit.data.services.LoginServices
+import com.example.syscredit.data.services.PaymentServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +20,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
     @Provides
-    @Singleton
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
@@ -27,7 +29,6 @@ object NetworkModule {
         .build()
 
     @Provides
-    @Singleton
     fun providesOkHttpClient(): OkHttpClient {
         val client = OkHttpClient.Builder()
             .connectTimeout(120, TimeUnit.SECONDS)
@@ -40,19 +41,20 @@ object NetworkModule {
     }
 
     @Provides
-    @Singleton
     fun provideCreditsServices(retrofit: Retrofit): CreditsServices = retrofit.create(CreditsServices::class.java)
 
     @Provides
-    @Singleton
-    fun provideApiHelper(apiCreditsHelper: ApiCreditsHelper): ApiCreditsHelper = apiCreditsHelper
+    fun provideApiHelper(apiCreditsHelperImpl: ApiCreditsHelperImpl): ApiCreditsHelper = apiCreditsHelperImpl
 
     @Provides
-    @Singleton
     fun provideLoginServices(retrofit: Retrofit): LoginServices = retrofit.create(LoginServices::class.java)
 
     @Provides
-    @Singleton
-    fun provideApiLoginHelper(apiLoginHelper: ApiLoginHelperImpl): ApiLoginHelper = apiLoginHelper
+    fun provideApiLoginHelper(apiLoginHelperImpl: ApiLoginHelperImpl): ApiLoginHelper = apiLoginHelperImpl
 
+    @Provides
+    fun providePaymentServices(retrofit: Retrofit): PaymentServices = retrofit.create(PaymentServices::class.java)
+
+    @Provides
+    fun provideApiPaymentHelper(apiPaymentHelperImpl: ApiPaymentHelperImpl): ApiPaymentHelper = apiPaymentHelperImpl
 }
