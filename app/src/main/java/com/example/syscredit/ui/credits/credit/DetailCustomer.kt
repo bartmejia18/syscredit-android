@@ -47,11 +47,11 @@ class DetailCustomer : Fragment() {
             totalDebtTextView.text = getString(R.string.label_quetzal, credit.deudatotal)
             balanceTextView.text = getString(R.string.label_quetzal, credit.saldo)
             feedPaidTextView.text = credit.cantidad_cuotas_pagadas.toString()
-            remainingTextView.text = "0"
-            dailyFeeTextView.text = getString(R.string.label_quetzal,credit.cuota_diaria)
+            remainingTextView.text = credit.cuotas_pendientes.toString()
+            dailyFeeTextView.text = getString(R.string.label_quetzal, credit.cuota_diaria)
             startDateTextView.text = credit.fecha_inicio
             endDateTextView.text = credit.fecha_fin
-            amountPaidTextView.text = "0"
+            amountPaidTextView.text = getString(R.string.label_quetzal, credit.monto_abonado.toString())
 
             if (!credit.pago_hoy) {
                 payRegisterButton.show()

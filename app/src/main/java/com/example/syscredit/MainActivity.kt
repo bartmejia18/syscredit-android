@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.syscredit.core.extensions.hide
@@ -26,8 +27,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         with (binding) {
-            navController = findNavController(R.id.nav_host_fragment)
-            navController.apply {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            navController = navHostFragment.navController.apply {
                 addOnDestinationChangedListener { _, destination, _ ->
                     hideKeyboard()
                     when (destination.id) {

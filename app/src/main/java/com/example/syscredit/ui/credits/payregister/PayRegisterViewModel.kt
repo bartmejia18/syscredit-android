@@ -23,7 +23,7 @@ class PayRegisterViewModel @Inject constructor(
             _payment.postValue(Resource.loading())
             paymentRepository.payment(idCredito, abono).let {
                 if (it.isSuccessful) {
-                    _payment.postValue(Resource.success(Any()))
+                    _payment.postValue(Resource.success(it.message(), null))
                 } else {
                     _payment.postValue(Resource.error(it.errorBody().toString(), null))
                 }

@@ -20,12 +20,14 @@
     <string name="title_sign_in">INICIAR SESIÓN</string>
     <string name="title_error_login">ERROR AL INICIAR SESIÓN</string>
     <string name="title_error">Error</string>
+    <string name="title_info">Información</string>
 
     <string name="label_user">Usuario</string>
     <string name="label_password">Contraseña</string>
     <string name="label_sign_in">Iniciar sesión</string>
     <string name="label_quetzal">Q. %1$s</string>
     <string name="label_total_cobrar">COBRAR: Q. %1$S</string>
+    <string name="label_total_cobrado">COBRADO: Q. %1$S</string>
     <string name="label_amount_register">Monto a registrar:</string>
 
     <string name="action_accept">Aceptar</string>

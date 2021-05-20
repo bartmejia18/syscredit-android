@@ -24,7 +24,7 @@ class LoginViewModel @Inject constructor(
             _user.postValue(Resource.loading(null))
             loginRepository.login(user, password).let {
                 if (it.isSuccessful) {
-                    _user.postValue(Resource.success(it.body()?.records?: User()))
+                    _user.postValue(Resource.success(it.message(), it.body()?.records?: User()))
                 } else _user.postValue(Resource.error(it.errorBody().toString(), null))
             }
         }

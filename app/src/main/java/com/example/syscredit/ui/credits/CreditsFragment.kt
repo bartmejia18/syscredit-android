@@ -20,6 +20,7 @@ import com.example.syscredit.data.local.getFromSharedPreferences
 import com.example.syscredit.data.model.Credito
 import com.example.syscredit.databinding.FragmentCreditsBinding
 import com.example.syscredit.utils.Status
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -55,10 +56,31 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator?) {
                             super.onAnimationEnd(animation)
-                            binding.progressBar.hide()
-                            adapter = MainAdapter(credits.data?.registros?: listOf(), this@CreditsFragment)
-                            binding.totalCobrarText.text = getString(R.string.label_total_cobrar, credits.data?.total_cobrar.toString())
-                            binding.recyclerView.adapter = adapter
+                            if (credits.data != null) {
+                                binding.progressBar.hide()
+                                adapter = MainAdapter(
+                                    credits.data.registros,
+                                    this@CreditsFragment
+                                )
+                                binding.totalCobrarText.text = getString(
+                                    R.string.label_total_cobrar,
+                                    credits.data.total_cobrar
+                                )
+                                binding.totalCobradoText.text = getString(
+                                    R.string.label_total_cobrado,
+                                    credits.data.total_cobrado
+                                )
+                                binding.recyclerView.adapter = adapter
+                            } else {
+                                MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
+                                    .setTitle(R.string.title_info)
+                                    .setMessage(credits.message)
+                                    .setPositiveButton(R.string.action_accept) {
+                                            dialog, _ -> dialog.dismiss()
+                                            binding.recyclerView.hide()
+                                    }
+                                    .create().show()
+                            }
                         }
                     })
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
@@ -74,7 +96,6 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                 }
             }
         }
-
     }
 
     private fun setupRecyclerView() {

@@ -22,7 +22,7 @@ class CreditsViewModel @Inject constructor(
             _credits.postValue(Resource.loading(null))
             creditsRepository.getListCredits(idUser).let {
                 if (it.isSuccessful) {
-                    _credits.postValue(Resource.success(it.body()?.records?: Records()))
+                    _credits.postValue(Resource.success(it.body()?.message, it.body()?.records))
                 } else {
                     _credits.postValue(Resource.error(it.message()))
                 }

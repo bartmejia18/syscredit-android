@@ -42,10 +42,10 @@ data class Credito(
     val estado: Int = 0,
     @Json(name = "cantidad_cuotas_pagadas")
     val cantidad_cuotas_pagadas: Int? = null,
-    /*@Json(name = "cuotas_pendientes")
+    @Json(name = "cuotas_pendientes")
     val cuotas_pendientes: Int? = null,
     @Json(name = "monto_abonado")
-    val monto_abonado: Long? = null,*/
+    val monto_abonado: Long? = null,
     @Json(name = "pago_hoy")
     val pago_hoy: Boolean = false,
     @Json(name = "nombre_completo")
@@ -59,6 +59,8 @@ data class Records(
     val total_cobrar: String? = null,
     @Json(name = "total_minimo")
     val total_minimo: String? = null,
+    @Json(name = "total_cobrado")
+    val total_cobrado: String? = null,
     @Json(name = "registros")
     val registros: List<Credito> = listOf()
 )
