@@ -52,7 +52,13 @@ class DetailCustomer : Fragment() {
             startDateTextView.text = credit.fecha_inicio
             endDateTextView.text = credit.fecha_fin
             amountPaidTextView.text = getString(R.string.label_quetzal, credit.monto_abonado.toString())
-
+            showHistoryButton.setOnClickListener {
+                findNavController().navigate(DetailCustomerDirections.actionDetailCustomerToHistoryPaymentsFragment(
+                    idCredit = credit.id,
+                    name = credit.nombre_completo,
+                    totalPaid = credit.total_pagado
+                ))
+            }
             if (!credit.pago_hoy) {
                 payRegisterButton.show()
                 payRegisterButton.setOnClickListener {

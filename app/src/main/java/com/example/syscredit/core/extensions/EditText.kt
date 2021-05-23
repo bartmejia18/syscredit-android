@@ -90,27 +90,6 @@ class Validator<T>(val text: String, val view: T?) {
         return isValidated
     }
 
-    fun email(): Validator<T> {
-        if (!text.matches(Regex("^([A-Za-z0-9_\\-.])+@([A-Za-z0-9_\\-.])+\\.([A-Za-z]{2,6})\$"))) {
-            setErrorType(ValidationError.EMAIL)
-        }
-        return this
-    }
-
-    fun validatePolice(): Validator<T> {
-        if (!text.matches(Regex("[0-9]*-[0-9]*-[0-9]*-[0-9]*-[0-9]*"))) {
-            setErrorType(ValidationError.NUMBER_POLICE)
-        }
-        return this
-    }
-
-    fun noNumbers(): Validator<T> {
-        if (text.matches(Regex(".*\\d.*"))) {
-            setErrorType(ValidationError.NO_NUMBERS)
-        }
-        return this
-    }
-
     fun nonEmpty(): Validator<T> {
         if (text.isEmpty()) {
             setErrorType(ValidationError.NON_EMPTY)
@@ -125,48 +104,10 @@ class Validator<T>(val text: String, val view: T?) {
         return this
     }
 
-    fun between(start: Int, end: Int): Validator<T> {
-        if (text.toInt() !in start until end) {
-            setErrorType(ValidationError.BETWEEN)
+    fun numberDecimals(): Validator<T> {
+        if (!text.matches(Regex("^[0-9]+([.][0-9]+)?\$"))) {
+            setErrorType(ValidationError.ONLY_NUMBERS)
         }
-        return this
-    }
-
-    fun allUpperCase(locale: Locale = Locale.getDefault()): Validator<T> {
-        if (text.toUpperCase(locale) != text) {
-            setErrorType(ValidationError.ALL_UPPER_CASE)
-        }
-        return this
-    }
-
-    fun allLowerCase(locale: Locale = Locale.getDefault()): Validator<T> {
-        if (text.toLowerCase(locale) != text) {
-            setErrorType(ValidationError.ALL_LOWER_CASE)
-        }
-        return this
-    }
-
-    fun atLeastOneLowerCase(): Validator<T> {
-        if (text.matches(Regex("[A-Z0-9]+"))) {
-            setErrorType(ValidationError.AT_LEAST_ONE_LOWER_CASE)
-        }
-        return this
-    }
-
-    fun atLeastOneUpperCase(): Validator<T> {
-        if (text.matches(Regex("[a-z0-9]+"))) {
-            setErrorType(ValidationError.AT_LEAST_ONE_UPPER_CASE)
-        }
-        return this
-    }
-
-    fun maximumLength(length: Int): Validator<T> {
-        MAXIMUM_LENGTH = length
-        return this
-    }
-
-    fun minimumLength(length: Int): Validator<T> {
-        MINIMUM_LENGTH = length
         return this
     }
 
@@ -180,58 +121,9 @@ class Validator<T>(val text: String, val view: T?) {
         return this
     }
 
-    fun atLeastOneNumber(): Validator<T> {
-        if (!text.matches(Regex(".*\\d.*"))) {
-            setErrorType(ValidationError.AT_LEAST_ONE_NUMBER)
-        }
-        return this
-    }
-
-    fun startsWithNonNumber(): Validator<T> {
-        if (Character.isDigit(text[0])) {
-            setErrorType(ValidationError.STARTS_WITH_NON_NUMBER)
-        }
-        return this
-    }
-
-    fun noSpecialCharacter(): Validator<T> {
-        if (!text.matches(Regex("[A-Za-z0-9]+"))) {
-            setErrorType(ValidationError.NO_SPECIAL_CHARACTER)
-        }
-        return this
-    }
-
-    fun atLeastOneSpecialCharacter(): Validator<T> {
-        if (text.matches(Regex("[A-Za-z0-9]+"))) {
-            setErrorType(ValidationError.AT_LEAST_ONE_SPECIAL_CHARACTER)
-        }
-        return this
-    }
-
     fun contains(string: String): Validator<T> {
         if (!text.contains(string)) {
             setErrorType(ValidationError.CONTAINS)
-        }
-        return this
-    }
-
-    fun doesNotContains(string: String): Validator<T> {
-        if (text.contains(string)) {
-            setErrorType(ValidationError.DOES_NOT_CONTAINS)
-        }
-        return this
-    }
-
-    fun startsWith(string: String): Validator<T> {
-        if (!text.startsWith(string)) {
-            setErrorType(ValidationError.STARTS_WITH)
-        }
-        return this
-    }
-
-    fun endsWith(string: String): Validator<T> {
-        if (!text.endsWith(string)) {
-            setErrorType(ValidationError.ENDS_WITH)
         }
         return this
     }
@@ -240,41 +132,6 @@ class Validator<T>(val text: String, val view: T?) {
     fun equals(string: String): Validator<T> {
         if (text != string) {
             setErrorType(ValidationError.EQUALS)
-        }
-        return this
-    }
-
-    fun creditCard(): Validator<T> {
-        val ccNumber = text.replace(" ", "")
-        var sum = 0
-        var alternate = false
-        for (i in ccNumber.length - 1 downTo 0) {
-            var n = Integer.parseInt(ccNumber.substring(i, i + 1))
-            if (alternate) {
-                n *= 2
-                if (n > 9) {
-                    n = n % 10 + 1
-                }
-            }
-            sum += n
-            alternate = !alternate
-        }
-        if (sum % 10 != 0) {
-            setErrorType(ValidationError.CREDIT_CARD_NUMBER)
-        }
-        return this
-    }
-
-    fun nit(): Validator<T> {
-        if (!text.matches(Regex("^(?i)((\\d+)(-|)(\\d|K)|CF|C/F)$"))) {
-            setErrorType(ValidationError.NIT)
-        }
-        return this
-    }
-
-    fun licensePlate(): Validator<T> {
-        if (!text.matches(Regex("^(\\d{3})([B-DF-HJ-NP-TV-Z]{3})$"))) {
-            setErrorType(ValidationError.LICENSE_PLATE)
         }
         return this
     }

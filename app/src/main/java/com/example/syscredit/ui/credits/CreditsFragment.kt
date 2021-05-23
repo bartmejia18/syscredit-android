@@ -57,7 +57,6 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                         override fun onAnimationEnd(animation: Animator?) {
                             super.onAnimationEnd(animation)
                             if (credits.data != null) {
-                                binding.progressBar.hide()
                                 adapter = MainAdapter(
                                     credits.data.registros,
                                     this@CreditsFragment

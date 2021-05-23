@@ -8,4 +8,6 @@
     <color name="colorWhite">#FFFFFF</color>
 
     <color name="colorBlue">#304ffe</color>
+
+    <color name="overlay_light_10">#1AFFFFFF</color>
 </resources>

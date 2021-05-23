@@ -391,17 +391,29 @@
                             cardView:layout_constraintTop_toBottomOf="@+id/title_amount_paid"
                             tools:text="Q. 1500.00" />
 
+
                         <Button
-                            android:id="@+id/pay_register_button"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/show_history_button"
+                            android:layout_width="230dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
+                            android:layout_marginBottom="14dp"
+                            android:text="@string/action_show_history"
+                            android:backgroundTint="@color/colorAccent"
+                            cardView:layout_constraintEnd_toEndOf="parent"
+                            cardView:layout_constraintStart_toStartOf="parent"
+                            cardView:layout_constraintTop_toBottomOf="@id/amount_paid_text_view" />
+
+                        <Button
+                            android:id="@+id/pay_register_button"
+                            android:layout_width="230dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginBottom="14dp"
                             android:text="@string/action_register_pay"
                             cardView:layout_constraintBottom_toBottomOf="parent"
                             cardView:layout_constraintEnd_toEndOf="parent"
                             cardView:layout_constraintStart_toStartOf="parent"
-                            cardView:layout_constraintTop_toBottomOf="@id/amount_paid_text_view" />
+                            cardView:layout_constraintTop_toBottomOf="@id/show_history_button" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

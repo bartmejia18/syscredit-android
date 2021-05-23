@@ -21,24 +21,34 @@
     <string name="title_error_login">ERROR AL INICIAR SESIÓN</string>
     <string name="title_error">Error</string>
     <string name="title_info">Información</string>
+    <string name="title_logout">Cerrar sesión</string>
+    <string name="title_history_payments">Historial de pagos</string>
 
     <string name="label_user">Usuario</string>
     <string name="label_password">Contraseña</string>
     <string name="label_sign_in">Iniciar sesión</string>
     <string name="label_quetzal">Q. %1$s</string>
+    <string name="label_date">Fecha: %1$s</string>
     <string name="label_total_cobrar">COBRAR: Q. %1$S</string>
     <string name="label_total_cobrado">COBRADO: Q. %1$S</string>
-    <string name="label_amount_register">Monto a registrar:</string>
+    <string name="label_amount_register">Monto a registrar</string>
+    <string name="label_total_payment">Total abonado: Q. %1$S</string>
+    <string name="label_date_pay">Fecha pagado:</string>
+    <string name="label_amount_pay">Monto abonado: </string>
 
     <string name="action_accept">Aceptar</string>
     <string name="action_register_pay">Registrar pago</string>
+    <string name="action_show_history">Ver historial de pagos</string>
     <string name="action_send">Enviar</string>
     <string name="action_cancel">Cancelar</string>
     <string name="action_close">Cerrar</string>
+    <string name="action_logout">Cerrar sesión</string>
 
     <string name="text_message_register_pay">Ingrese el monto a registrar</string>
     <string name="text_login_error">Usuario o contraseña incorrecto</string>
 
     <string name="message_error_field_required">Campo requerido</string>
+    <string name="message_logout">¿Realmente desea cerrar la sesión?</string>
+    <string name="message_no_results_payments">No se encontraron registros de pagos realizados.</string>
 
 </resources>

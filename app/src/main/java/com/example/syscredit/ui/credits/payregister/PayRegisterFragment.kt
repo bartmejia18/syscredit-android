@@ -65,11 +65,11 @@ class PayRegisterFragment : DialogFragment() {
                 binding.amountTextInputLayout
                     .validator()
                     .nonEmpty()
-                    .onlyNumbers()
+                    .numberDecimals()
                     .addErrorCallback { error, field ->
                         field?.error = when (error) {
                             ValidationError.NON_EMPTY -> getString(R.string.message_error_field_required)
-                            else -> null
+                            else -> "hay un error"
                         }
                         field?.editText?.requestFocus()
                     }

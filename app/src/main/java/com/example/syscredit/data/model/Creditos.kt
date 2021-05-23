@@ -50,6 +50,8 @@ data class Credito(
     val pago_hoy: Boolean = false,
     @Json(name = "nombre_completo")
     val nombre_completo: String = "",
+    @Json(name = "total_pagado")
+    val total_pagado: String = "0",
     @Json(name = "cliente")
     val cliente: Cliente
 ) : Parcelable

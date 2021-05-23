@@ -7,4 +7,6 @@ class PaymentRepository @Inject constructor(
     private val apiPaymentHelper: ApiPaymentHelper
 ) {
     suspend fun payment(idCredito: Int, abono: Double) = apiPaymentHelper.payment(idCredito, abono)
+
+    suspend fun getPayments(idCredito: Int) = apiPaymentHelper.getPayments(idCredito)
 }
