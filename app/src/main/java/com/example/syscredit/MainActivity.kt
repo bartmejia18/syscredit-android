@@ -83,6 +83,7 @@ class MainActivity : AppCompatActivity() {
                         setPositiveButton(R.string.action_logout) { dialog, _ ->
                             CoroutineScope(Dispatchers.Main + Job()).launch {
                                 context.sharedPreferences {
+                                    putInt("id", 0)
                                     putBoolean("logged_in", false)
                                 }
                                 dialog.dismiss()

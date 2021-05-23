@@ -17,11 +17,16 @@ import com.example.syscredit.core.extensions.fadeOut
 import com.example.syscredit.core.extensions.hide
 import com.example.syscredit.core.extensions.show
 import com.example.syscredit.data.local.getFromSharedPreferences
+import com.example.syscredit.data.local.sharedPreferences
 import com.example.syscredit.data.model.Credito
 import com.example.syscredit.databinding.FragmentCreditsBinding
 import com.example.syscredit.utils.Status
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
@@ -49,16 +54,17 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
         setupRecyclerView()
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)
+            viewModel.getCredits(activity?.getFromSharedPreferences("id", 0) ?: 0)
         }
 
-        with (viewModel) {
+        with(viewModel) {
             credits.observe(viewLifecycleOwner) { credits ->
                 when (credits.status) {
                     Status.LOADING -> binding.progressBar.show()
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator?) {
                             super.onAnimationEnd(animation)
+
                             binding.swipeRefreshLayout.isRefreshing = false
                             if (credits.data != null) {
                                 adapter = MainAdapter(
@@ -75,12 +81,18 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                                 )
                                 binding.recyclerView.adapter = adapter
                             } else {
+                                CoroutineScope(Dispatchers.Main + Job()).launch {
+                                    requireContext().sharedPreferences {
+                                        putInt("id", 0)
+                                        putBoolean("logged_in", false)
+                                    }
+                                }
                                 MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
                                     .setTitle(R.string.title_info)
                                     .setMessage(credits.message)
-                                    .setPositiveButton(R.string.action_accept) {
-                                            dialog, _ -> dialog.dismiss()
-                                            binding.recyclerView.hide()
+                                    .setPositiveButton(R.string.action_accept) { dialog, _ ->
+                                        dialog.dismiss()
+                                        binding.recyclerView.hide()
                                     }
                                     .create().show()
                             }
@@ -129,6 +141,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return true
             }
+
             override fun onQueryTextChange(newText: String?): Boolean {
                 adapter.filter.filter(newText)
                 return true
@@ -145,7 +158,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)
+        viewModel.getCredits(activity?.getFromSharedPreferences("id", 0) ?: 0)
     }
 
 }
