@@ -59,7 +59,9 @@ class PayRegisterFragment : DialogFragment() {
             }
         }
 
-
+        binding.cancelButton.setOnClickListener {
+            this.dismiss()
+        }
         binding.sendButton.setOnClickListener {
             when {
                 binding.amountTextInputLayout

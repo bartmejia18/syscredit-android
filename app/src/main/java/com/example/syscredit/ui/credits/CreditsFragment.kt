@@ -47,14 +47,19 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)
+        }
+
         with (viewModel) {
-            getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)
             credits.observe(viewLifecycleOwner) { credits ->
                 when (credits.status) {
                     Status.LOADING -> binding.progressBar.show()
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator?) {
                             super.onAnimationEnd(animation)
+                            binding.swipeRefreshLayout.isRefreshing = false
                             if (credits.data != null) {
                                 adapter = MainAdapter(
                                     credits.data.registros,
@@ -84,6 +89,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
                         override fun onAnimationEnd(animation: Animator?) {
                             super.onAnimationEnd(animation)
+                            binding.swipeRefreshLayout.isRefreshing = false
                             Toast.makeText(
                                 requireContext(),
                                 "HAY UN ERROR ${credits.message}",
@@ -135,6 +141,11 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)
     }
 
 }
