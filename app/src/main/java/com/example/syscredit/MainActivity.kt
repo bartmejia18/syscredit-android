@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import androidx.navigation.ui.NavigationUI.navigateUp
 import com.example.syscredit.core.extensions.hide
 import com.example.syscredit.core.extensions.hideKeyboard
 import com.example.syscredit.core.extensions.show
@@ -33,45 +34,50 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //with (binding) {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController.apply {
-            addOnDestinationChangedListener { _, destination, _ ->
-                hideKeyboard()
-                when (destination.id) {
-                    R.id.splash_fragment, R.id.login_fragment -> {
-                        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                        binding.appBarLayout.hide()
-                    }
-                    R.id.main_fragment -> {
-                        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
-                        binding.appBarLayout.show()
-                        binding.toolbar.setNavigationOnClickListener {
-                            binding.drawerLayout.openDrawer(GravityCompat.START)
+        with (binding) {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            navController = navHostFragment.navController.apply {
+                addOnDestinationChangedListener { _, destination, _ ->
+                    hideKeyboard()
+                    when (destination.id) {
+                        R.id.splash_fragment, R.id.login_fragment -> {
+                            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                            appBarLayout.hide()
                         }
-                    }
-                    R.id.detail_customer -> {
-                        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-                        binding.appBarLayout.show()
-                        binding.toolbar.setNavigationOnClickListener {
-                            navController.navigateUp()
+                        R.id.main_fragment -> {
+                            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+                            appBarLayout.show()
+                            toolbar.setNavigationOnClickListener {
+                                drawerLayout.openDrawer(GravityCompat.START)
+                            }
                         }
+                        R.id.detail_customer, R.id.history_payments_fragment -> {
+                            drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                            appBarLayout.show()
+                            toolbar.setNavigationOnClickListener {
+                                navController.navigateUp()
+                            }
 
+                        }
                     }
                 }
             }
-        }
 
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.splash_fragment, R.id.login_fragment, R.id.main_fragment), binding.drawerLayout)
-        setSupportActionBar(binding.toolbar)
-        setupActionBarWithNavController(navController, appBarConfiguration)
+            appBarConfiguration = AppBarConfiguration(
+                setOf(
+                    R.id.splash_fragment,
+                    R.id.login_fragment,
+                    R.id.main_fragment
+                ), drawerLayout
+            )
+            setSupportActionBar(toolbar)
+            setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.navView.setupWithNavController(navController)
-        binding.navView.setNavigationItemSelectedListener {
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-            when (it.itemId) {
-                R.id.nav_logout -> MaterialAlertDialogBuilder(this@MainActivity).apply {
+            navView.setupWithNavController(navController)
+            navView.setNavigationItemSelectedListener {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                when (it.itemId) {
+                    R.id.nav_logout -> MaterialAlertDialogBuilder(this@MainActivity).apply {
                         setTitle(R.string.title_logout)
                         setMessage(R.string.message_logout)
                         setPositiveButton(R.string.action_logout) { dialog, _ ->
@@ -88,16 +94,14 @@ class MainActivity : AppCompatActivity() {
                         }
                     }.create().show()
 
+                }
+                true
             }
-            true
+
         }
-
-        //}
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(binding.drawerLayout)
-    }
+    override fun onSupportNavigateUp() = navController.navigateUp(appBarConfiguration)
 
     override fun onOptionsItemSelected(item: MenuItem) =
         item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)

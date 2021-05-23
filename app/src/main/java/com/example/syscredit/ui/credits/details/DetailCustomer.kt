@@ -1,4 +1,4 @@
-package com.example.syscredit.ui.credits.credit
+package com.example.syscredit.ui.credits.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -78,4 +78,5 @@ class DetailCustomer : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

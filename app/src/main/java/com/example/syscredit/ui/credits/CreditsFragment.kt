@@ -46,7 +46,6 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
         with (viewModel) {
             getCredits(activity?.getFromSharedPreferences("id", 0)?: 0)

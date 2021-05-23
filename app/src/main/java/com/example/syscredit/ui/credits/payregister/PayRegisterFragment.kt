@@ -96,7 +96,7 @@ class PayRegisterFragment : DialogFragment() {
                             binding.sendButton.text = getString(R.string.action_send)
                             Toast.makeText(requireContext(), "Pago registrado exitosamente", Toast.LENGTH_LONG).show()
                             this@PayRegisterFragment.dismiss()
-                            findNavController().navigate(PayRegisterFragmentDirections.actionPayRegisterFragmentToMainFragment())
+                            findNavController().popBackStack(R.id.detail_customer, true)
                         }
                     })
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter(){

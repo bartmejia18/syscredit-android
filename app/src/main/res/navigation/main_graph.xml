@@ -12,22 +12,23 @@
         tools:layout="@layout/fragment_credits">
         <action
             android:id="@+id/action_mainFragment_to_detailCustomer"
-            app:destination="@id/detail_customer" />
+            app:destination="@id/detail_customer"
+            />
         <action
             android:id="@+id/action_main_fragment_to_splash_fragment"
-            app:destination="@id/splash_fragment" />
+            app:destination="@id/splash_fragment"
+            app:popUpTo="@id/main_fragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/detail_customer"
-        android:name="com.example.syscredit.ui.credits.credit.DetailCustomer"
+        android:name="com.example.syscredit.ui.credits.details.DetailCustomer"
         android:label="@string/title_customer_detail"
         tools:layout="@layout/fragment_detail_customer">
         <action
             android:id="@+id/action_detail_customer_to_payRegisterFragment"
-            app:destination="@id/payRegisterFragment"
-            app:popUpTo="@id/detail_customer"
-            app:popUpToInclusive="true">
+            app:destination="@id/payRegisterFragment">
             <argument
                 android:name="id_credit"
                 android:defaultValue="0"
