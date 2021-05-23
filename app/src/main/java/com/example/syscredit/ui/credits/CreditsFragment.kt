@@ -3,6 +3,7 @@ package com.example.syscredit.ui.credits
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.SearchView
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.syscredit.BuildConfig
 import com.example.syscredit.R
 import com.example.syscredit.core.extensions.DEFAULT_ANIMATION_DURATION_TIME
 import com.example.syscredit.core.extensions.fadeOut
