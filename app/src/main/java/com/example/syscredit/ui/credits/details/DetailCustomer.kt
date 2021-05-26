@@ -48,6 +48,7 @@ class DetailCustomer : Fragment() {
             balanceTextView.text = getString(R.string.label_quetzal, credit.saldo)
             feedPaidTextView.text = credit.cantidad_cuotas_pagadas.toString()
             remainingTextView.text = credit.cuotas_pendientes.toString()
+            arrearsTextView.text = credit.cuotas_atrasadas.toString()
             dailyFeeTextView.text = getString(R.string.label_quetzal, credit.cuota_diaria)
             startDateTextView.text = credit.fecha_inicio
             endDateTextView.text = credit.fecha_fin

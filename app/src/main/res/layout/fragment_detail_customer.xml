@@ -270,25 +270,25 @@
                             android:textSize="18sp"
                             android:textStyle="bold"
                             cardView:layout_constraintBottom_toBottomOf="@+id/feed_paid_text_view"
-                            cardView:layout_constraintEnd_toStartOf="@+id/daily_fee_text_view"
+                            cardView:layout_constraintEnd_toStartOf="@+id/arrears_text_view"
                             cardView:layout_constraintHorizontal_bias="0.5"
                             cardView:layout_constraintStart_toEndOf="@+id/feed_paid_text_view"
                             cardView:layout_constraintTop_toTopOf="@+id/feed_paid_text_view"
                             tools:text="100" />
 
                         <TextView
-                            android:id="@+id/title_daily_fee"
+                            android:id="@+id/arrears_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/label_daily_fee"
+                            android:text="@string/label_arrears"
                             android:textAllCaps="true"
-                            cardView:layout_constraintBottom_toTopOf="@id/daily_fee_text_view"
-                            cardView:layout_constraintEnd_toEndOf="@id/daily_fee_text_view"
-                            cardView:layout_constraintStart_toStartOf="@id/daily_fee_text_view"
+                            cardView:layout_constraintBottom_toTopOf="@id/arrears_text_view"
+                            cardView:layout_constraintEnd_toEndOf="@id/arrears_text_view"
+                            cardView:layout_constraintStart_toStartOf="@id/arrears_text_view"
                             cardView:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/daily_fee_text_view"
+                            android:id="@+id/arrears_text_view"
                             android:layout_width="94dp"
                             android:layout_height="50dp"
                             android:layout_marginEnd="14dp"
@@ -302,7 +302,7 @@
                             cardView:layout_constraintHorizontal_bias="0.5"
                             cardView:layout_constraintStart_toEndOf="@+id/remaining_text_view"
                             cardView:layout_constraintTop_toTopOf="@+id/remaining_text_view"
-                            tools:text="Q. 1000.00" />
+                            tools:text="100" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -366,18 +366,18 @@
                             tools:text="Q. 1000.00" />
 
                         <TextView
-                            android:id="@+id/title_amount_paid"
+                            android:id="@+id/daily_fee_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
-                            android:text="@string/label_amount_paid"
+                            android:text="@string/label_daily_fee"
                             android:textAllCaps="true"
-                            cardView:layout_constraintEnd_toEndOf="@id/amount_paid_text_view"
-                            cardView:layout_constraintStart_toStartOf="@id/amount_paid_text_view"
+                            cardView:layout_constraintEnd_toEndOf="@id/daily_fee_text_view"
+                            cardView:layout_constraintStart_toStartOf="@id/daily_fee_text_view"
                             cardView:layout_constraintTop_toBottomOf="@id/start_date_text_view" />
 
                         <TextView
-                            android:id="@+id/amount_paid_text_view"
+                            android:id="@+id/daily_fee_text_view"
                             android:layout_width="140dp"
                             android:layout_height="50dp"
                             android:background="@drawable/rectangle"
@@ -388,6 +388,32 @@
                             cardView:layout_constraintEnd_toEndOf="@+id/start_date_text_view"
                             cardView:layout_constraintHorizontal_bias="0.5"
                             cardView:layout_constraintStart_toStartOf="@+id/start_date_text_view"
+                            cardView:layout_constraintTop_toBottomOf="@+id/daily_fee_title"
+                            tools:text="Q. 1500.00" />
+
+                        <TextView
+                            android:id="@+id/title_amount_paid"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:text="@string/label_amount_paid"
+                            android:textAllCaps="true"
+                            cardView:layout_constraintEnd_toEndOf="@id/amount_paid_text_view"
+                            cardView:layout_constraintStart_toStartOf="@id/amount_paid_text_view"
+                            cardView:layout_constraintTop_toBottomOf="@id/end_date_text_view" />
+
+                        <TextView
+                            android:id="@+id/amount_paid_text_view"
+                            android:layout_width="140dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rectangle"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            cardView:layout_constraintEnd_toEndOf="@+id/end_date_text_view"
+                            cardView:layout_constraintHorizontal_bias="0.5"
+                            cardView:layout_constraintStart_toStartOf="@+id/end_date_text_view"
                             cardView:layout_constraintTop_toBottomOf="@+id/title_amount_paid"
                             tools:text="Q. 1500.00" />
 
@@ -402,7 +428,7 @@
                             android:backgroundTint="@color/colorAccent"
                             cardView:layout_constraintEnd_toEndOf="parent"
                             cardView:layout_constraintStart_toStartOf="parent"
-                            cardView:layout_constraintTop_toBottomOf="@id/amount_paid_text_view" />
+                            cardView:layout_constraintTop_toBottomOf="@id/daily_fee_text_view" />
 
                         <Button
                             android:id="@+id/pay_register_button"

@@ -5,6 +5,7 @@ import com.example.syscredit.data.api.*
 import com.example.syscredit.data.services.CreditsServices
 import com.example.syscredit.data.services.LoginServices
 import com.example.syscredit.data.services.PaymentServices
+import com.example.syscredit.data.services.PermissionServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -57,4 +58,10 @@ object NetworkModule {
 
     @Provides
     fun provideApiPaymentHelper(apiPaymentHelperImpl: ApiPaymentHelperImpl): ApiPaymentHelper = apiPaymentHelperImpl
+
+    @Provides
+    fun providePermissionServices(retrofit: Retrofit): PermissionServices = retrofit.create(PermissionServices::class.java)
+
+    @Provides
+    fun provideApiPermissionHelper(apiPermissionHelperImpl: ApiPermissionHelperImpl): ApiPermissionHelper = apiPermissionHelperImpl
 }

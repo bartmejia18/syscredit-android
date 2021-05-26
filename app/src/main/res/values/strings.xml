@@ -12,7 +12,8 @@
     <string name="title_fee">CUOTAS</string>
     <string name="label_fee_paid">Pagadas</string>
     <string name="label_remaining">Restantes</string>
-    <string name="label_daily_fee">Diaria</string>
+    <string name="label_daily_fee">Cuota diaria</string>
+    <string name="label_arrears">Atrasadas</string>
     <string name="label_start_date">Fecha inicio</string>
     <string name="end_date">Fecha finalización</string>
     <string name="label_amount_paid">Monto abonado</string>

@@ -44,6 +44,8 @@ data class Credito(
     val cantidad_cuotas_pagadas: Int? = null,
     @Json(name = "cuotas_pendientes")
     val cuotas_pendientes: Int? = null,
+    @Json(name = "cuotas_atrasadas")
+    val cuotas_atrasadas: Int? = null,
     @Json(name = "monto_abonado")
     val monto_abonado: Long? = null,
     @Json(name = "pago_hoy")
