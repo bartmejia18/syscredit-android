@@ -1,10 +1,13 @@
 package com.example.syscredit.ui.credits.details
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.findNavController
 import com.example.syscredit.R
@@ -13,6 +16,9 @@ import com.example.syscredit.core.extensions.hide
 import com.example.syscredit.core.extensions.show
 import com.example.syscredit.data.model.Credito
 import com.example.syscredit.databinding.FragmentDetailCustomerBinding
+import java.time.DayOfWeek
+import java.time.LocalDate
+import java.util.*
 
 class DetailCustomer : Fragment() {
 
@@ -35,6 +41,7 @@ class DetailCustomer : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -60,7 +67,10 @@ class DetailCustomer : Fragment() {
                     totalPaid = credit.total_pagado
                 ))
             }
-            if (!credit.pago_hoy) {
+
+            val today = LocalDate.now().dayOfWeek
+
+            if (!credit.pago_hoy && today != DayOfWeek.SUNDAY) {
                 payRegisterButton.show()
                 payRegisterButton.setOnClickListener {
                     findNavController().navigate(DetailCustomerDirections.actionDetailCustomerToPayRegisterFragment(credit.id))

@@ -35,7 +35,6 @@ class MainAdapter(
                 holder.itemView.setOnClickListener {
                     itemClickListener.click(this)
                 }
-
                 if (pago_hoy) {
                     binding.payTodayImageView.show()
                 } else {

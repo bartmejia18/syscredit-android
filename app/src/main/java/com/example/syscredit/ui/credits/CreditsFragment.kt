@@ -153,14 +153,8 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onResume() {
         super.onResume()
         viewModel.getCredits(activity?.getFromSharedPreferences("id", 0) ?: 0)
     }
-
 }
