@@ -64,7 +64,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                 when (credits.status) {
                     Status.LOADING -> binding.progressBar.show()
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
 
                             binding.swipeRefreshLayout.isRefreshing = false
@@ -101,7 +101,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
                         }
                     })
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             binding.swipeRefreshLayout.isRefreshing = false
                             Toast.makeText(
@@ -134,6 +134,7 @@ class CreditsFragment : Fragment(), MainAdapter.ItemClickListener {
         findNavController().navigate(R.id.detail_customer, bundle)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.top_app_bar, menu)
         val search = menu.findItem(R.id.search)

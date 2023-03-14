@@ -93,7 +93,7 @@ class PayRegisterFragment : DialogFragment() {
                         binding.progressBar.show()
                     }
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             binding.sendButton.text = getString(R.string.action_send)
                             Toast.makeText(requireContext(), "Pago registrado exitosamente", Toast.LENGTH_LONG).show()
@@ -102,7 +102,7 @@ class PayRegisterFragment : DialogFragment() {
                         }
                     })
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             binding.sendButton.text = getString(R.string.action_send)
                             MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)

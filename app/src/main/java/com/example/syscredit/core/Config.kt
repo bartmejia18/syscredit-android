@@ -5,7 +5,8 @@ import com.example.syscredit.BuildConfig
 object AppConstants {
     var BASE_URL = when (BuildConfig.FLAVOR) {
         "credihelp" -> "http://157.230.9.234/ws/"
-        "rapicredit" -> "http://206.189.68.122/ws/"
+        "rapicredit" -> "http://144.126.216.191/ws/"
+        "syscredit" -> "http://207.154.229.193/ws/"
         else -> ""
     }
 }

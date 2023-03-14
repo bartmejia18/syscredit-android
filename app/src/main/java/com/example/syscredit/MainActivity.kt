@@ -107,6 +107,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem) =
         item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() = when {
         binding.drawerLayout.isDrawerOpen(GravityCompat.START) -> {
             binding.drawerLayout.closeDrawer(GravityCompat.START)

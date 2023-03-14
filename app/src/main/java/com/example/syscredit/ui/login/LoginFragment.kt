@@ -46,7 +46,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         Status.SUCCESS -> progressBar.fadeOut(
                             DEFAULT_ANIMATION_DURATION_TIME,
                             object : AnimatorListenerAdapter() {
-                                override fun onAnimationEnd(animation: Animator?) {
+                                override fun onAnimationEnd(animation: Animator) {
                                     super.onAnimationEnd(animation)
                                     if (it.data?.id != 0) {
                                         loginButton.text = getString(R.string.label_sign_in)
@@ -68,7 +68,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         Status.ERROR -> progressBar.fadeOut(
                             DEFAULT_ANIMATION_DURATION_TIME,
                             object : AnimatorListenerAdapter() {
-                                override fun onAnimationEnd(animation: Animator?) {
+                                override fun onAnimationEnd(animation: Animator) {
                                     super.onAnimationEnd(animation)
                                     loginButton.text = getString(R.string.label_sign_in)
                                     MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)

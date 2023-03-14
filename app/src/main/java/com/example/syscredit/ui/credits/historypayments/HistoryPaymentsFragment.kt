@@ -60,7 +60,7 @@ class HistoryPaymentsFragment: Fragment() {
                         binding.noResultsTextView.hide()
                     }
                     Status.SUCCESS -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter(){
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             when (payments.data?.size) {
                                 0 -> {
@@ -76,7 +76,7 @@ class HistoryPaymentsFragment: Fragment() {
                         }
                     })
                     Status.ERROR -> binding.progressBar.fadeOut(DEFAULT_ANIMATION_DURATION_TIME, object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator?) {
+                        override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             binding.noResultsTextView.show()
                             binding.recyclerView.hide()
