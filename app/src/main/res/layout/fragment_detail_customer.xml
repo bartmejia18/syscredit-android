@@ -146,14 +146,28 @@
                         tools:layout_editor_absoluteX="16dp">
 
                         <TextView
+                            android:id="@+id/estado_morosidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="true"
+                            android:padding="8dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorWhite"
+                            android:text="preubauaug"
+                            cardView:layout_constraintEnd_toEndOf="parent"
+                            cardView:layout_constraintStart_toStartOf="parent"
+                            cardView:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/label_total_debt"
                             android:textAllCaps="true"
+                            android:layout_marginTop="20dp"
                             cardView:layout_constraintBottom_toTopOf="@id/total_debt_text_view"
                             cardView:layout_constraintEnd_toEndOf="@id/total_debt_text_view"
                             cardView:layout_constraintStart_toStartOf="@id/total_debt_text_view"
-                            cardView:layout_constraintTop_toTopOf="parent" />
+                            cardView:layout_constraintTop_toBottomOf="@id/estado_morosidad" />
 
                         <TextView
                             android:id="@+id/total_debt_text_view"
@@ -169,7 +183,7 @@
                             cardView:layout_constraintEnd_toStartOf="@+id/balance_text_view"
                             cardView:layout_constraintHorizontal_bias="0.5"
                             cardView:layout_constraintStart_toStartOf="parent"
-                            cardView:layout_constraintTop_toTopOf="parent"
+                            cardView:layout_constraintTop_toBottomOf="@id/estado_morosidad"
                             tools:text="Q. 1500.00" />
 
                         <TextView
@@ -177,10 +191,11 @@
                             android:layout_height="wrap_content"
                             android:text="@string/label_balance"
                             android:textAllCaps="true"
+                            android:layout_marginTop="20dp"
                             cardView:layout_constraintBottom_toTopOf="@id/total_debt_text_view"
                             cardView:layout_constraintEnd_toEndOf="@id/balance_text_view"
                             cardView:layout_constraintStart_toStartOf="@+id/balance_text_view"
-                            cardView:layout_constraintTop_toTopOf="parent" />
+                            cardView:layout_constraintTop_toBottomOf="@id/estado_morosidad" />
 
                         <TextView
                             android:id="@+id/balance_text_view"
@@ -195,7 +210,7 @@
                             cardView:layout_constraintEnd_toEndOf="parent"
                             cardView:layout_constraintHorizontal_bias="0.5"
                             cardView:layout_constraintStart_toEndOf="@+id/total_debt_text_view"
-                            cardView:layout_constraintTop_toTopOf="parent"
+                            cardView:layout_constraintTop_toBottomOf="@id/estado_morosidad"
                             tools:text="Q. 1000.00" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -203,7 +218,7 @@
                         android:id="@+id/title_fee"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="50dp"
                         android:text="@string/title_fee"
 
                         android:textAlignment="center"

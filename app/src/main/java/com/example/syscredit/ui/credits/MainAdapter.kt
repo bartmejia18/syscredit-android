@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.syscredit.R
 import com.example.syscredit.core.extensions.hide
 import com.example.syscredit.core.extensions.show
 import com.example.syscredit.data.model.Credito
@@ -40,6 +41,24 @@ class MainAdapter(
                 } else {
                     binding.payTodayImageView.hide()
                 }
+
+                when (estado_morosidad) {
+                    "Excelente" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_green)
+                    "Bueno" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_orange)
+                    "Moroso" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_red)
+                    else -> {}
+                }
+                binding.estadoMorosidad.text = estado_morosidad
+
+                when (tipo_plan) {
+                    "Diario" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_cyan)
+                    "Semanal" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_indigo)
+                    "Mensual" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_teal)
+                    else -> {}
+                }
+
+                binding.tipoCredito.text = tipo_plan
+
             }
         }
     }

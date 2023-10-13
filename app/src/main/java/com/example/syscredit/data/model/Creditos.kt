@@ -46,6 +46,8 @@ data class Credito(
     val cuotas_pendientes: Int? = null,
     @Json(name = "cuotas_atrasadas")
     val cuotas_atrasadas: Int? = null,
+    @Json(name = "estado_morosidad")
+    val estado_morosidad: String = "",
     @Json(name = "monto_abonado")
     val monto_abonado: Long? = null,
     @Json(name = "pago_hoy")
@@ -54,6 +56,8 @@ data class Credito(
     val nombre_completo: String = "",
     @Json(name = "total_pagado")
     val total_pagado: String = "0",
+    @Json(name = "tipo_plan")
+    val tipo_plan: String = "",
     @Json(name = "cliente")
     val cliente: Cliente
 ) : Parcelable

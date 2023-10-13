@@ -51,6 +51,16 @@ class DetailCustomer : Fragment() {
             addressTextView.text = credit.cliente.direccion
             phoneTextView.text = credit.cliente.telefono
             dpiTextView.text = credit.cliente.dpi
+
+            when (credit.estado_morosidad) {
+                "Excelente" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_green)
+                "Bueno" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_orange)
+                "Moroso" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_red)
+                else -> {}
+            }
+
+            binding.estadoMorosidad.text = "Cliente: ${credit.estado_morosidad}"
+
             totalDebtTextView.text = getString(R.string.label_quetzal, credit.deudatotal)
             balanceTextView.text = getString(R.string.label_quetzal, credit.saldo)
             feedPaidTextView.text = credit.cantidad_cuotas_pagadas.toString()
