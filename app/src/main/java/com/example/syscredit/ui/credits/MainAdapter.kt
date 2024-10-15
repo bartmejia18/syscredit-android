@@ -1,9 +1,11 @@
 package com.example.syscredit.ui.credits
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.syscredit.R
 import com.example.syscredit.core.extensions.hide
@@ -29,6 +31,9 @@ class MainAdapter(
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+
+
+
         with (holder) {
             with (customerFilterList[position]) {
                 binding.txtName.text = nombre_completo
@@ -42,23 +47,34 @@ class MainAdapter(
                     binding.payTodayImageView.hide()
                 }
 
-                when (estado_morosidad) {
+                /*when (estado_morosidad) {
                     "Excelente" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_green)
                     "Bueno" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_orange)
                     "Moroso" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_red)
                     else -> {}
                 }
-                binding.estadoMorosidad.text = estado_morosidad
+                binding.estadoMorosidad.text = estado_morosidad*/
 
-                when (tipo_plan) {
-                    "Diario" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_cyan)
-                    "Semanal" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_indigo)
-                    "Mensual" -> binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_teal)
+                when (planes?.tipo) {
+                    1 -> {
+                        binding.tipoCredito.text = "Diario"
+                        binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_cyan)
+                        binding.diaPago.isVisible = false
+                    }
+                    2 -> {
+                        binding.tipoCredito.text = "Semanal"
+                        binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_indigo)
+                        binding.diaPago.isVisible = true
+                        binding.diaPago.text = dia_pago
+                    }
+                    3 -> {
+                        binding.tipoCredito.text = "Mensual"
+                        binding.tipoCredito.setBackgroundResource(R.drawable.rectangle_teal)
+                        binding.diaPago.isVisible = true
+                        binding.diaPago.text = dia_pago
+                    }
                     else -> {}
                 }
-
-                binding.tipoCredito.text = tipo_plan
-
             }
         }
     }
@@ -82,7 +98,7 @@ class MainAdapter(
                 } else {
                     val resultList = mutableListOf<Credito>()
                     for (row in customerList) {
-                        if (row.nombre_completo.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (row.nombre_completo?.lowercase(Locale.ROOT)?.contains(charSearch.lowercase(Locale.ROOT)) == true) {
                             resultList.add(row)
                         }
                     }

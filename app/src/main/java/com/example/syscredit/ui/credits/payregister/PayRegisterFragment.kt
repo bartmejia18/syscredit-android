@@ -80,7 +80,8 @@ class PayRegisterFragment : DialogFragment() {
                     }
                     .validate() -> viewModel.payRegister(
                         idCredito = arguments?.getInt("id_credit")?: 0,
-                        abono = binding.amountTextInputLayout.editText?.text.toString().toDouble()
+                        abono = binding.amountTextInputLayout.editText?.text.toString().toDouble(),
+                        origen = 2
                     )
             }
         }
@@ -105,7 +106,7 @@ class PayRegisterFragment : DialogFragment() {
                         override fun onAnimationEnd(animation: Animator) {
                             super.onAnimationEnd(animation)
                             binding.sendButton.text = getString(R.string.action_send)
-                            MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_AppCompat_Dialog_Alert)
+                            MaterialAlertDialogBuilder(requireContext(), com.google.android.material.R.style.ThemeOverlay_AppCompat_Dialog_Alert)
                                 .setTitle(R.string.title_error)
                                 .setMessage(it.message)
                                 .setPositiveButton(R.string.action_accept) { dialog, _ -> dialog.dismiss() }

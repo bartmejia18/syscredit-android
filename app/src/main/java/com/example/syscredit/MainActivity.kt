@@ -3,14 +3,11 @@ package com.example.syscredit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
-import androidx.navigation.ui.NavigationUI.navigateUp
 import com.example.syscredit.core.extensions.hide
 import com.example.syscredit.core.extensions.hideKeyboard
 import com.example.syscredit.core.extensions.show

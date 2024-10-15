@@ -52,14 +52,14 @@ class DetailCustomer : Fragment() {
             phoneTextView.text = credit.cliente.telefono
             dpiTextView.text = credit.cliente.dpi
 
-            when (credit.estado_morosidad) {
+            /*when (credit.estado_morosidad) {
                 "Excelente" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_green)
                 "Bueno" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_orange)
                 "Moroso" -> binding.estadoMorosidad.setBackgroundResource(R.drawable.rectangle_red)
                 else -> {}
-            }
+            }*/
 
-            binding.estadoMorosidad.text = "Cliente: ${credit.estado_morosidad}"
+            binding.estadoMorosidad.visibility = View.GONE
 
             totalDebtTextView.text = getString(R.string.label_quetzal, credit.deudatotal)
             balanceTextView.text = getString(R.string.label_quetzal, credit.saldo)
@@ -74,19 +74,23 @@ class DetailCustomer : Fragment() {
                 findNavController().navigate(DetailCustomerDirections.actionDetailCustomerToHistoryPaymentsFragment(
                     idCredit = credit.id,
                     name = credit.nombre_completo,
-                    totalPaid = credit.total_pagado
+                    totalPaid = credit.total_pagado?:"0"
                 ))
             }
 
             val today = LocalDate.now().dayOfWeek
 
-            if (!credit.pago_hoy && today != DayOfWeek.SUNDAY) {
+            if (credit.pago_hoy || (today == DayOfWeek.SUNDAY && credit.planes?.domingo == "1")) {
+                payRegisterButton.hide()
+            } else {
                 payRegisterButton.show()
                 payRegisterButton.setOnClickListener {
-                    findNavController().navigate(DetailCustomerDirections.actionDetailCustomerToPayRegisterFragment(credit.id))
+                    findNavController().navigate(
+                        DetailCustomerDirections.actionDetailCustomerToPayRegisterFragment(
+                            credit.id
+                        )
+                    )
                 }
-            } else {
-                payRegisterButton.hide()
             }
 
             phoneButton.setOnClickListener {

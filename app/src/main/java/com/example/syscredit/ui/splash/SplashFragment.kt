@@ -25,7 +25,11 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
                 if (it.status == Status.SUCCESS) {
                     if (it.data?.acceso == "bmr") {
                         if (activity?.getFromSharedPreferences("logged_in", false) == true) {
-                            findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToMainFragment())
+                            if (activity?.getFromSharedPreferences("tipoUsuariosId", 0) == 5) {
+                                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToUnlocksFragment())
+                            } else {
+                                findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToMainFragment())
+                            }
                         } else {
                             findNavController().navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
                         }

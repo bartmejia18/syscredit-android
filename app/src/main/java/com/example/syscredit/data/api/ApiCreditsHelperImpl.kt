@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 class ApiCreditsHelperImpl @Inject constructor(
     private val apiServices: CreditsServices
-): ApiCreditsHelper {
-    override suspend fun getListCredit(idUser: Int): Response<ApiResponse<Records>> = apiServices.getListCustomer(idUser)
+) : ApiCreditsHelper {
+    override suspend fun getListCredit(idUser: Int): Response<ApiResponse<Records>> =
+        apiServices.getListCustomer(idUser)
 }

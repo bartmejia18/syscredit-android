@@ -9,6 +9,7 @@ import javax.inject.Inject
 class ApiPaymentHelperImpl @Inject constructor(
     private val apiServices: PaymentServices
 ): ApiPaymentHelper {
-    override suspend fun payment(idCredito: Int, abono: Double): Response<ApiResponse<Any>> = apiServices.paymentAsync(idCredito, abono)
+    override suspend fun payment(idCredito: Int, abono: Double, origen: Int): Response<ApiResponse<Any>> = apiServices.paymentAsync(idCredito, abono, origen)
+
     override suspend fun getPayments(idCredito: Int): Response<ApiResponse<List<Payment>>> = apiServices.getPaymentsAsync(idCredito)
 }

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class PaymentRepository @Inject constructor(
     private val apiPaymentHelper: ApiPaymentHelper
 ) {
-    suspend fun payment(idCredito: Int, abono: Double) = apiPaymentHelper.payment(idCredito, abono)
+    suspend fun payment(idCredito: Int, abono: Double, origen: Int) = apiPaymentHelper.payment(idCredito, abono, origen)
 
     suspend fun getPayments(idCredito: Int) = apiPaymentHelper.getPayments(idCredito)
 }

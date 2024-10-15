@@ -1,18 +1,18 @@
 package com.example.syscredit.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class User(
-    @Json(name = "id")
-    val id: Int = 0,
-    @Json(name = "tipo_usuarios_id")
-    val tipoUsuariosId: Int = 0,
-    @Json(name = "sucursales_id")
-    val sucursalesId: Int = 0,
-    @Json(name = "nombre")
-    val nombre: String = "",
-    @Json(name = "user")
-    val user: String = "",
-    @Json(name = "estado")
-    val estado: Int = 0
+    @SerializedName("id")
+    var id: Int = 0,
+    @SerializedName("tipo_usuarios_id")
+    var tipoUsuariosId: Int = 0,
+    @SerializedName("sucursales_id")
+    var sucursalesId: Int = 0,
+    @SerializedName("nombre")
+    var nombre: String = "",
+    @SerializedName("user")
+    var user: String = "",
+    @SerializedName("estado")
+    var estado: Int = 0
 )

@@ -4,5 +4,7 @@
         <domain includeSubdomains="true">157.230.9.234</domain>
         <domain includeSubdomains="true">144.126.216.191</domain>
         <domain includeSubdomains="true">207.154.229.193</domain>
+        <domain includeSubdomains="true">137.184.188.216</domain>
+        <domain includeSubdomains="true">164.92.107.193</domain>
     </domain-config>
 </network-security-config>

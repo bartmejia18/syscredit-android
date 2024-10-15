@@ -18,10 +18,10 @@ class PayRegisterViewModel @Inject constructor(
     val payment: LiveData<Resource<Any>>
         get() = _payment
 
-    fun payRegister(idCredito: Int, abono: Double) {
+    fun payRegister(idCredito: Int, abono: Double, origen: Int) {
         viewModelScope.launch {
             _payment.postValue(Resource.loading())
-            paymentRepository.payment(idCredito, abono).let {
+            paymentRepository.payment(idCredito, abono, origen).let {
                 if (it.isSuccessful) {
                     _payment.postValue(Resource.success(it.message(), null))
                 } else {

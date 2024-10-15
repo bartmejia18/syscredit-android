@@ -1,10 +1,10 @@
 package com.example.syscredit.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 class Permission (
-    @Json(name = "id")
+    @SerializedName("id")
     val id: Int = 0,
-    @Json(name = "acceso")
+    @SerializedName("acceso")
     val acceso: String? = null
 )

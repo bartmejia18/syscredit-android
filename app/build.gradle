@@ -9,22 +9,23 @@ plugins {
 }
 
 android {
-    compileSdkVersion 33
-    buildToolsVersion "30.0.2"
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.syscredit"
         minSdkVersion 21
-        targetSdkVersion 33
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,27 +35,53 @@ android {
     productFlavors {
         credihelp {
             dimension "version"
+            buildConfigField "String", "BASE_URL", '"http://157.230.9.234/ws/"'
         }
         rapicredit {
             dimension "version"
+            dimension "version"
+            versionCode 1001
+            versionName '1.0.1'
+            buildConfigField "String", "BASE_URL", '"http://144.126.216.191/ws/"'
+        }
+        elprimo {
+            dimension "version"
+            buildConfigField "String", "BASE_URL", '"http://207.154.229.193/ws/"'
+        }
+        deleon {
+            dimension "version"
+            buildConfigField "String", "BASE_URL", '"http://137.184.188.216/ws/"'
         }
         syscredit {
+            applicationId 'com.syscredit.creditos'
             dimension "version"
+            versionCode 1000
+            versionName '1.0.0'
+            buildConfigField "String", "BASE_URL", '"http://164.92.107.193/ws/"'
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_18
+        targetCompatibility JavaVersion.VERSION_18
     }
 
     buildFeatures {
-        viewBinding = true
+        viewBinding true
+        buildConfig true
+        compose true
+    }
+
+    composeOptions {
+        //https://developer.android.com/jetpack/androidx/releases/compose-kotlin
+        kotlinCompilerExtensionVersion "1.4.4" //https://developer.android.com/jetpack/androidx/releases/compose-compiler
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_18.toString()
     }
+
+    namespace 'com.example.syscredit'
 
     hilt {
         enableAggregatingTask = true
@@ -66,7 +93,7 @@ dependencies {
 
 
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10"
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.8.0"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
@@ -77,12 +104,13 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-common-java8:2.6.0"
 
     // Ktx
-    implementation "androidx.core:core-ktx:1.12.0-alpha01"
+    implementation "androidx.core:core-ktx:1.13.1"
     implementation "androidx.fragment:fragment-ktx:1.5.5"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0"
 
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.compose.material3:material3-android:1.2.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -96,11 +124,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
 
     //Retrofit
-    implementation "com.squareup.retrofit2:converter-moshi:2.6.2"
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.google.code.gson:gson:2.9.1"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.12.0"
 
     //Material Design
     implementation "com.google.android.material:material:1.3.0"
@@ -112,12 +139,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //region --- Compose ---
+    def compose_bom = '2023.09.01'
+    def compose_activity = '1.8.2'
+    def compose_navigation = '2.7.7'
+    implementation platform("androidx.compose:compose-bom:$compose_bom")
+    implementation "androidx.activity:activity-compose:$compose_activity"
+    implementation 'androidx.compose.runtime:runtime-livedata'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+    implementation "androidx.navigation:navigation-compose:$compose_navigation"
+
+    //endregion --- Compose ---
 }
 
 kapt {
     correctErrorTypes true
-
-
-
-    11021403
 }

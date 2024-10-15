@@ -1,12 +1,13 @@
 package com.example.syscredit.data.model.response
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
+
 
 data class ApiResponse<T> (
-    @Json(name = "message")
+    @SerializedName("message")
     val message: String? = null,
-    @Json(name = "result")
+    @SerializedName("result")
     val result: Boolean = false,
-    @Json(name = "records")
+    @SerializedName("records")
     val records: T? = null,
 )

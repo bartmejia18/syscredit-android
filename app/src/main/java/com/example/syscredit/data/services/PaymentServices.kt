@@ -17,7 +17,8 @@ interface PaymentServices {
     @POST(PAYMENT)
     suspend fun paymentAsync(
         @Query("idcredito") idcredito: Int,
-        @Query("abono") abono: Double
+        @Query("abono") abono: Double,
+        @Query("origen") origen: Int,
     ): Response<ApiResponse<Any>>
 
     @GET(GET_PAYMENTS)

@@ -68,6 +68,9 @@
             app:destination="@id/main_fragment"
             app:popUpTo="@id/splash_fragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splash_fragment_to_unlocksFragment"
+            app:destination="@id/unlocksFragment" />
     </fragment>
     <fragment
         android:id="@+id/login_fragment"
@@ -79,6 +82,9 @@
             app:destination="@id/main_fragment"
             app:popUpTo="@id/login_fragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_login_fragment_to_unlocksFragment"
+            app:destination="@id/unlocksFragment" />
     </fragment>
     <dialog
         android:id="@+id/payRegisterFragment"
@@ -94,4 +100,8 @@
         android:name="com.example.syscredit.ui.credits.historypayments.HistoryPaymentsFragment"
         android:label="HistoryPaymentsFragment"
         tools:layout="@layout/fragment_history_payments" />
+    <fragment
+        android:id="@+id/unlocksFragment"
+        android:name="com.example.syscredit.ui.unlocks.UnlocksFragment"
+        android:label="UnlocksFragment" />
 </navigation>

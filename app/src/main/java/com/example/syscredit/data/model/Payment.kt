@@ -1,16 +1,16 @@
 package com.example.syscredit.data.model
 
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 
 data class Payment(
-    @Json(name = "id")
+    @SerializedName("id")
     val id: Int = 0,
-    @Json(name = "credito_id")
+    @SerializedName("credito_id")
     val credito_id: Int = 0,
-    @Json(name = "fecha_pago")
+    @SerializedName("fecha_pago")
     val fecha_pago: String = "",
-    @Json(name = "abono")
+    @SerializedName("abono")
     val abono: Float = 0F,
-    @Json(name = "estado")
+    @SerializedName("estado")
     val estado: Int = 0,
 )

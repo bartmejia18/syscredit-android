@@ -1,11 +1,13 @@
 package com.example.syscredit.di
 
-import com.example.syscredit.core.AppConstants.BASE_URL
+import com.example.syscredit.BuildConfig
 import com.example.syscredit.data.api.*
+import com.example.syscredit.data.services.BlockedServices
 import com.example.syscredit.data.services.CreditsServices
 import com.example.syscredit.data.services.LoginServices
 import com.example.syscredit.data.services.PaymentServices
 import com.example.syscredit.data.services.PermissionServices
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,9 +15,8 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,8 +25,14 @@ object NetworkModule {
     fun provideRetrofitInstance(
         okHttpClient: OkHttpClient
     ): Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .addConverterFactory(MoshiConverterFactory.create())
+        .baseUrl(BuildConfig.BASE_URL)
+        .addConverterFactory(
+            GsonConverterFactory.create(
+                GsonBuilder()
+                    .setLenient()
+                    .create()
+            )
+        )
         .client(okHttpClient)
         .build()
 
@@ -42,26 +49,45 @@ object NetworkModule {
     }
 
     @Provides
-    fun provideCreditsServices(retrofit: Retrofit): CreditsServices = retrofit.create(CreditsServices::class.java)
+    fun provideCreditsServices(retrofit: Retrofit): CreditsServices =
+        retrofit.create(CreditsServices::class.java)
 
     @Provides
-    fun provideApiHelper(apiCreditsHelperImpl: ApiCreditsHelperImpl): ApiCreditsHelper = apiCreditsHelperImpl
+    fun provideApiHelper(apiCreditsHelperImpl: ApiCreditsHelperImpl): ApiCreditsHelper =
+        apiCreditsHelperImpl
 
     @Provides
-    fun provideLoginServices(retrofit: Retrofit): LoginServices = retrofit.create(LoginServices::class.java)
+    fun provideLoginServices(retrofit: Retrofit): LoginServices =
+        retrofit.create(LoginServices::class.java)
 
     @Provides
-    fun provideApiLoginHelper(apiLoginHelperImpl: ApiLoginHelperImpl): ApiLoginHelper = apiLoginHelperImpl
+    fun provideApiLoginHelper(apiLoginHelperImpl: ApiLoginHelperImpl): ApiLoginHelper =
+        apiLoginHelperImpl
 
     @Provides
-    fun providePaymentServices(retrofit: Retrofit): PaymentServices = retrofit.create(PaymentServices::class.java)
+    fun providePaymentServices(retrofit: Retrofit): PaymentServices =
+        retrofit.create(PaymentServices::class.java)
 
     @Provides
-    fun provideApiPaymentHelper(apiPaymentHelperImpl: ApiPaymentHelperImpl): ApiPaymentHelper = apiPaymentHelperImpl
+    fun provideApiPaymentHelper(apiPaymentHelperImpl: ApiPaymentHelperImpl): ApiPaymentHelper =
+        apiPaymentHelperImpl
 
     @Provides
-    fun providePermissionServices(retrofit: Retrofit): PermissionServices = retrofit.create(PermissionServices::class.java)
+    fun providePermissionServices(retrofit: Retrofit): PermissionServices =
+        retrofit.create(PermissionServices::class.java)
 
     @Provides
-    fun provideApiPermissionHelper(apiPermissionHelperImpl: ApiPermissionHelperImpl): ApiPermissionHelper = apiPermissionHelperImpl
+    fun provideApiPermissionHelper(apiPermissionHelperImpl: ApiPermissionHelperImpl): ApiPermissionHelper =
+        apiPermissionHelperImpl
+
+
+    @Provides
+    fun provideBlockedServices(retrofit: Retrofit): BlockedServices =
+        retrofit.create(BlockedServices::class.java)
+
+    @Provides
+    fun provideApiBlockedHelper(apiBlockedHelperImpl: ApiBlockedHelperImpl): ApiBlockedHelper =
+        apiBlockedHelperImpl
+
+
 }
